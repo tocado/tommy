@@ -1,0 +1,6 @@
+C:\Users\Tommas\OneDrive\Windows OneDrive\Projects\WPF\TypeScriptHTMLApp1\TypeScriptHTMLApp1\bin\TypeScriptHTMLApp1.dll.config
+C:\Users\Tommas\OneDrive\Windows OneDrive\Projects\WPF\TypeScriptHTMLApp1\TypeScriptHTMLApp1\bin\TypeScriptHTMLApp1.dll
+C:\Users\Tommas\OneDrive\Windows OneDrive\Projects\WPF\TypeScriptHTMLApp1\TypeScriptHTMLApp1\bin\TypeScriptHTMLApp1.pdb
+C:\Users\Tommas\OneDrive\Windows OneDrive\Projects\WPF\TypeScriptHTMLApp1\TypeScriptHTMLApp1\obj\Debug\TypeScriptHTMLApp1.csprojResolveAssemblyReference.cache
+C:\Users\Tommas\OneDrive\Windows OneDrive\Projects\WPF\TypeScriptHTMLApp1\TypeScriptHTMLApp1\obj\Debug\TypeScriptHTMLApp1.dll
+C:\Users\Tommas\OneDrive\Windows OneDrive\Projects\WPF\TypeScriptHTMLApp1\TypeScriptHTMLApp1\obj\Debug\TypeScriptHTMLApp1.pdb
