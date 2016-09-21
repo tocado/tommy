@@ -1,26 +1,61 @@
-﻿<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
     <title>Testeando</title>
-    <style type="text/css">
-        body {
-            margin: 0;
-            background-color: #D8E8ED;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="Content/bootstrap.min.css" rel="stylesheet">
+    <script src="Scripts/angular.js"></script>
+    <style>
+        .container-fluid {
+            text-align: center;
+        }
+        .borders {
+            border: 1px solid black;
         }
     </style>
-    
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
+    <div id="detect-breakpoints">
+        <div class="breakpoint device-xs visible-xs"></div>
+        <div class="breakpoint device-sm visible-sm"></div>
+        <div class="breakpoint device-md visible-md"></div>
+        <div class="breakpoint device-lg visible-lg"></div>
+    </div>
+
     <script type="text/javascript">
         body = document.getElementsByTagName("body");
-        span = document.createElement("span");
+        
+        function ApCh(where, what, clas) {
+            where.appendChild(what).setAttribute("class", clas);
+        }
 
+
+        function MultiLine(SomeText, where) {
+            internalspan = document.createElement("span");
+            for (i = 0; i < SomeText.length; i++) {
+                internalspan.appendChild(document.createTextNode(SomeText[i]));
+                internalspan.appendChild(document.createElement("br"));
+            }
+            if (where != null) { where.appendChild(internalspan); }
+            else { body[0].appendChild(internalspan); }
+        }
+        function adclas(What, clasname) {
+            for (i = 0; i < What.length; i++) {
+                What[i].setAttribute("class", clasname);
+            }
+        }
+
+
+        body = document.getElementsByTagName("body");
+        span = document.createElement("span");
+        
         function OnClickLogIn() {
             var oReqShort = "";
 
             oReq = new XMLHttpRequest();
             oReq.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200){
+                if (this.readyState == 4 && this.status == 200) {
                     oReqShort = oReq.responseText.split("\n");
                     FindPass(oReqShort[0].trim(), oReqShort[1].trim());
                 }
@@ -43,99 +78,169 @@
             What.style.left = WLeft;
         }
 
-        div1 = document.createElement("div");
-        div1.style.height = "100px";
-        div1.style.backgroundColor = "#3b5999";
+        function Fadspace(What) {
+            What.appendChild(document.createElement('br'));
+        }
 
-        d1div1 = document.createElement("div");
-        d1div1.style.height = "65px";
-        d1div1.style.width = "225px";
-        /*d1div1.style.background = "red";*/
-        /*d1div1.style.position = "absolute";
-        d1div1.style.left = "40px";
-        d1div1.style.top = "25px";*/
-        FPos(d1div1, "25px", "40px");
-        d1div1.style.textAlign = "center";
+        testcontainer = document.createElement('div');
+        testcontainer.style.height = "100px";
+        FPos(testcontainer, "0px", "0px");
+        testcontainer.style.right = "0px";
+        testR1 = document.createElement('div');
+        adclas([testR1], "row");
+        testC1 = document.createElement('div');
+        adclas([testC1], "col-xs-12");
+        testC1.style.backgroundColor = "#3b5999";
+        testC1.style.height = "100px";
+        testcontainer.appendChild(testR1);
+        testR1.appendChild(testC1);
 
-        d1div2 = document.createElement("div");
-        d1div2.style.height = "85px";
-        d1div2.style.width = "500px";
-        /*d1div2.style.background = "red";*/
-        /*d1div2.style.position = "absolute";
-        d1div2.style.left = "760px";
-        d1div2.style.top = "5px";*/
-        FPos(d1div2, "5px", "760px");
 
-        label1 = document.createElement('span');
-        label1.appendChild(document.createTextNode("Email or Phone"));
-        /*label1.style.position = "absolute";
-        label1.style.left = "16px";
-        label1.style.top = "15px";*/
-        label1.style.color = "white";
-        FPos(label1, "15px", "16px");
+        body[0].appendChild(testcontainer);
 
-        input = document.createElement('input');
-        /*input.style.position = "absolute";
-        input.style.left = "15px";
-        input.style.top = "38px";*/
-        input.style.height = "27px";
-        input.style.width = "190px";
-        FPos(input, "38px", "15px");
 
-        label2 = document.createElement('span');
-        label2.appendChild(document.createTextNode("Password"));
-        /*label2.style.position = "absolute";
-        label2.style.left = "226px";
-        label2.style.top = "15px";*/
-        label2.style.color = "white";
-        FPos(label2, "15px", "226px");
 
-        input2 = document.createElement('input');
-        /*input2.style.position = "absolute";
-        input2.style.left = "225px";
-        input2.style.top = "38px";*/
-        input2.style.height = "27px";
-        input2.style.width = "190px";
-        FPos(input2, "38px", "225px");
+        cont1 = document.createElement("div");
 
-        label3 = document.createElement('span');
-        label3.appendChild(document.createTextNode("Forgot account?"));
-        /*label3.style.position = "absolute";
-        label3.style.left = "226px";
-        label3.style.top = "66px";*/
-        label3.style.color = "white";
-        FPos(label3, "66px", "226px");
+        C1row1 = document.createElement("div");
+        cont1.appendChild(C1row1);
+
+        adclas([cont1], "container-fluid");
+        adclas([C1row1], "row");
+        
+        /*BreakpointBT = angular.module('modules').factory('BreakpointService', function ($log) {
+            return {
+                isBreakpoint: function (alias) {
+                    return $('#detect-breakpoints .device-' + alias).is(':visible');
+                },
+                getBreakpoint: function () {
+                    var $visibleElement, breakpointStringsArray, currentBreakpoint;
+                    currentBreakpoint = void 0;
+                    $visibleElement = $('#detect-breakpoints .breakpoint:visible');
+                    breakpointStringsArray = [['device-xs', 'xs'], ['device-sm', 'sm'], ['device-md', 'md'], ['device-lg', 'lg']];
+                    _.each(breakpointStringsArray, function (breakpoint) {
+                        if ($visibleElement.hasClass(breakpoint[0])) {
+                            currentBreakpoint = breakpoint[1];
+                        }
+                    });
+                    return currentBreakpoint;
+                }
+            };
+        });
+        */
+        body[0].appendChild(cont1);
+
+        C1R1col1 = document.createElement("div");
+        C1row1.appendChild(C1R1col1);
+        adclas([C1R1col1], "col-sm-2");
+        C1R1Co1h1 = document.createElement("h1");
+        C1R1Co1h1.innerHTML = "fakebook";
+        Fadspace(C1R1col1);
+        C1R1col1.appendChild(C1R1Co1h1);
+
+        C1R1col2 = document.createElement("div");
+        C1row1.appendChild(C1R1col2);
+        adclas([C1R1col2], "col-sm-3");
+        Fadspace(C1R1col2);
+        C1R1Co2h1 = document.createElement("h1");
+        C1R1Co2h1.innerHTML = " ";
+        C1R1col2.appendChild(C1R1Co2h1);
+
+        C1R1col3 = document.createElement("div");
+        C1row1.appendChild(C1R1col3);
+        adclas([C1R1col3], "col-sm-3");
+
+        row5 = document.createElement("div");
+        adclas([row5], "row");
+        Column5 = document.createElement("div");
+        adclas([Column5], "hidden-xs col-sm-12");
+        row5.appendChild(Column5);
+        C1R1col3.appendChild(row5);
+        column5h1 = document.createElement('h5');
+        column5h1.innerHTML = "Email or Phone";
+        Column5.appendChild(column5h1);
+        Column5.style.textAlign = "left";
+        Column5.style.height = "30px";
+
+        C1R1Co3row1 = document.createElement("div");
+        C1R1col3.appendChild(C1R1Co3row1)
+        adclas([C1R1Co3row1], "row");
+
+        Column2 = document.createElement("div");
+        adclas([Column2], "col-sm-12");
+        C1R1Co3row1.appendChild(Column2);
+
+        input1 = document.createElement("input");
+        input1.setAttribute("type", "email");
+        input1.setAttribute("class", "form-control");
+        input1.setAttribute("id", "emailorphone");
+        input1.setAttribute("placeholder", "Email or Phone");
+
+        Column2.appendChild(input1);
+
+        C1R1col4 = document.createElement("div");
+        C1row1.appendChild(C1R1col4);
+        adclas([C1R1col4], "col-sm-3")
+
+        row6 = document.createElement("div");
+        adclas([row6], "row");
+        Column6 = document.createElement("div");
+        adclas([Column6], "hidden-xs col-sm-12");
+        row6.appendChild(Column6);
+        C1R1col4.appendChild(row6);
+        column6h1 = document.createElement('h5');
+        column6h1.innerHTML = "Password";
+        Column6.appendChild(column6h1);
+        Column6.style.textAlign = "left";
+        Column6.style.height = "30px";
+        row2 = document.createElement("div");
+        C1R1col4.appendChild(row2);
+        adclas([row2], "row");
+
+        Column3 = document.createElement("div");
+        adclas([Column3], "col-sm-12");
+        row2.appendChild(Column3);
+
+        input2 = document.createElement("input");
+        input2.setAttribute("type", "password");
+        input2.setAttribute("class", "form-control");
+        input2.setAttribute("id", "password");
+        input2.setAttribute("placeholder", "Password");
+
+        Column3.appendChild(input2);
+
+        row3 = document.createElement("div");
+        C1R1col4.appendChild(row3);
+        adclas([row3], "row");
+
+        Column4 = document.createElement("div");
+        adclas([Column4], "hidden-xs col-sm-12");
+        row3.appendChild(Column4);
+        column4H1 = document.createElement('h5');
+        column4H1.innerHTML = "Forgot your password?";
+        Column4.appendChild(column4H1);
+        Column4.style.textAlign = "left";
+        Column4.style.webkitTextFillColor = "#90C3D4";
+
+
+        C1R1col5 = document.createElement("div");
+        C1row1.appendChild(C1R1col5);
+        adclas([C1R1col5], "col-sm-1");
+
+        cont1.style.webkitTextFillColor = "white";
 
         button1 = document.createElement('button');
-        button1.style.width = "52px";
-        button1.style.height = "30px";
-        /*button1.style.position = "absolute";
-        button1.style.left = "433px";
-        button1.style.top = "35px";*/
         button1.style.textAlign = "center";
-        button1.appendChild(document.createTextNode("Log In"));
-        button1.addEventListener("click", OnClickLogIn);
         button1.style.background = "#4638C2";
         button1.style.webkitTextFillColor = "white";
-        FPos(button1, "35px", "433px");
+        button1.setAttribute("type", "submit");
+        button1.innerHTML = "Log In";
+        adclas([button1], "btn btn-default");
 
-        span.appendChild(document.createTextNode("facebook"));
-        span.style.fontSize = 60;
-        span.style.color = "white";
-        
-        body[0].appendChild(div1);
+        C1R1col5.appendChild(button1);
+        C1R1col5.style.lineHeight = "90px";
 
-        div1.appendChild(d1div1);
-        div1.appendChild(d1div2);
-        d1div1.appendChild(span);
-        d1div2.appendChild(label1);
-        d1div2.appendChild(input);
-        d1div2.appendChild(label2);
-        d1div2.appendChild(input2);
-        d1div2.appendChild(label3);
-        d1div2.appendChild(button1);
 
-        
         function AddImageBody(animage, width, height) {
             newimage = document.createElement("IMG");
             newimage.setAttribute('src', animage);
@@ -145,367 +250,286 @@
             return newimage;
         }
 
-        function MultiLine(SomeText, where) {
-            internalspan = document.createElement("span");
-            for (i = 0; i < SomeText.length; i++) {
-                internalspan.appendChild(document.createTextNode(SomeText[i]));
-                internalspan.appendChild(document.createElement("br"));
-            }
-            if (where != null) { where.appendChild(internalspan); }
-            else { body[0].appendChild(internalspan); }
-        }
+        contain2 = document.createElement('div');
+        contain2.style.fontFamily = "helvetica", "arial", "sans-serif";
+        adclas([contain2], "container-fluid");
+        contain2.style.alignContent = "left";
+        contain2.style.textAlign = "left";
+        contain2.style.backgroundColor = "#E8F2E4";
 
-        div2 = document.createElement("div");
-        div2.style.height = "400px";
-        div2.style.width = "700px";
-        /*div2.style.background = "green";*/
-        /*div2.style.position = "absolute";
-        div2.style.left = "15px";
-        div2.style.top = "150px";*/
-        FPos(div2, "150px", "15px");
-        /*div2.style.fontFamily = "Freight Sans Bold", "helvetica", "arial", "sans-serif";*/
-        /*div2.style.fontFamily = 'Freight Sans Bold';*/
-        div2.style.fontFamily = "helvetica", "arial", "sans-serif";
 
-        div2.style.padding = "42px 0 24px";
-        div2.style.fontSize = "28px";
-        div2.style.lineHeight = "36px";
+        body[0].appendChild(contain2);
+        Contain2r1 = document.createElement('div');
+        contain2.appendChild(Contain2r1);
+        Contain2R1c1 = document.createElement('div');
+        Contain2R1c2 = document.createElement('div');
+        Contain2r1.appendChild(Contain2R1c1);
+        Contain2r1.appendChild(Contain2R1c2);
 
-        d2div1 = document.createElement('div');
-        /*d2div1.style.background = "blue";*/
-        d2div1.style.height = "80px";
-        d2div1.style.width = "700px"
-        /*d2div1.style.position = "absolute";
-        d2div1.style.top = "165px";*/
-        FPos(d2div1, "165px", "0px");
 
-        d2d1div1 = document.createElement('div');
-        /*d2d1div1.style.background = "red";*/
-        d2d1div1.style.height = "50px";
-        d2d1div1.style.width = "50px"
-        /*d2d1div1.style.position = "absolute";
-        d2d1div1.style.left = "2px";
-        d2d1div1.style.top = "10px";*/
-        d2d1div1.style.verticalAlign = "middle";
-        FPos(d2d1div1, "10px", "2px");
-
-        d2d1div2 = document.createElement('div');
-        /*d2d1div2.style.background = "red";*/
-        d2d1div2.style.height = "40px";
-        d2d1div2.style.width = "640px"
-        /*d2d1div2.style.position = "absolute";
-        d2d1div2.style.left = "60px";
-        d2d1div2.style.top = "15px";*/
-        d2d1div2.style.verticalAlign = "middle";
-        FPos(d2d1div2, "15px", "60px");
-
-        d2div2 = document.createElement('div');
-        /*d2div2.style.background = "blue";*/
-        d2div2.style.height = "80px";
-        d2div2.style.width = "700px"
-        /*d2div2.style.position = "absolute";
-        d2div2.style.top = "265px";*/
-        FPos(d2div2, "265px", "0px");
-
-        d2d2div1 = document.createElement('div');
-        /*d2d2div1.style.background = "red";*/
-        d2d2div1.style.height = "50px";
-        d2d2div1.style.width = "50px"
-        /*d2d2div1.style.position = "absolute";
-        d2d2div1.style.left = "2px";
-        d2d2div1.style.top = "10px";*/
-        d2d2div1.style.verticalAlign = "middle";
-        FPos(d2d2div1, "10px", "2px");
-
-        d2d2div2 = document.createElement('div');
-        /*d2d2div2.style.background = "red";*/
-        d2d2div2.style.height = "40px";
-        d2d2div2.style.width = "640px"
-        /*d2d2div2.style.position = "absolute";
-        d2d2div2.style.left = "60px";
-        d2d2div2.style.top = "15px";*/
-        d2d2div2.style.verticalAlign = "middle";
-        FPos(d2d2div2, "15px", "60px");
+        Co2R1C1r1 = document.createElement('div');
+        Contain2R1c1.appendChild(Co2R1C1r1);
         
-        d2div3 = document.createElement('div');
-        /*d2div3.style.background = "blue";*/
-        d2div3.style.height = "80px";
-        d2div3.style.width = "700px"
-        /*d2div3.style.position = "absolute";
-        d2div3.style.top = "365px";*/
-        FPos(d2div3, "365px", "0px");
+        Co2R1C1R1c1 = document.createElement('div');
+        Fadspace(Co2R1C1R1c1); Fadspace(Co2R1C1R1c1); Fadspace(Co2R1C1R1c1);
+        Co2R1C1R1C1h1 = document.createElement('h1');
+        Co2R1C1R1C1h1.innerHTML = "Connect with firends and the world around you on Facebook.";
+        Co2R1C1R1c1.appendChild(Co2R1C1R1C1h1);
+        Fadspace(Co2R1C1R1c1); Fadspace(Co2R1C1R1c1);
+        Co2R1C1r1.appendChild(Co2R1C1R1c1);
 
-        d2d3div1 = document.createElement('div');
-        /*d2d3div1.style.background = "red";*/
-        d2d3div1.style.height = "50px";
-        d2d3div1.style.width = "50px"
-        /*d2d3div1.style.position = "absolute";
-        d2d3div1.style.left = "2px";
-        d2d3div1.style.top = "10px";*/
-        d2d3div1.style.verticalAlign = "middle";
-        FPos(d2d3div1, "10px", "2px");
+        Co2R1C1r2 = document.createElement('div');
+        Contain2R1c1.appendChild(Co2R1C1r2);
+        Co2R1C1R2c1 = document.createElement('div');
+        Co2R1C1R2c2 = document.createElement('div');
+        adclas([Co2R1C1R2c1], "col-xs-1");
+        adclas([Co2R1C1R2c2], "col-xs-11");
+        Co2R1C1r2.appendChild(Co2R1C1R2c1);
+        Co2R1C1r2.appendChild(Co2R1C1R2c2);
 
-        d2d3div2 = document.createElement('div');
-        /*d2d3div2.style.background = "red";*/
-        d2d3div2.style.height = "40px";
-        d2d3div2.style.width = "640px"
-        /*d2d3div2.style.position = "absolute";
-        d2d3div2.style.left = "60px";
-        d2d3div2.style.top = "15px";*/
-        d2d3div2.style.verticalAlign = "middle";
-        FPos(d2d3div2, "15px", "60px");
+        Fadspace(Co2R1C1R2c1);
+        Co2R1C1R2c1.appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851565_602269956474188_918638970_n.png"));
 
-        body[0].appendChild(div2);
-
-        spanCon = document.createElement('span');
-        MultiLine(["Connect with friends and the", "world around you on Facebook."], spanCon);
-        div2.appendChild(spanCon);
-        spanCon.style.fontFamily = "helvetica", "arial", "sans-serif";
-        /*spanCon.style.fontWeight = "bold";*/
-        spanCon.style.fontSize = "38px";
-        spanCon.style.lineHeight = "36px";
+        Co2R1C1R2C2h1 = document.createElement('h3');
+        Co2R1C1R2C2h1.innerHTML = "See photos and updates from friends in News Feed.";
+        Co2R1C1R2c2.appendChild(Co2R1C1R2C2h1);
+        Fadspace(Co2R1C1R2c2);
 
 
-        div2.appendChild(d2div1);
-        div2.appendChild(d2div2);
-        div2.appendChild(d2div3);
+        Co2R1C1r3 = document.createElement('div');
+        Contain2R1c1.appendChild(Co2R1C1r3);
+        Co2R1C1R3c1 = document.createElement('div');
+        Co2R1C1R3c2 = document.createElement('div');
+        adclas([Co2R1C1R3c1], "col-sm-1");
+        adclas([Co2R1C1R3c2], "col-sm-11");
+        Co2R1C1r3.appendChild(Co2R1C1R3c1);
+        Co2R1C1r3.appendChild(Co2R1C1R3c2);
 
-        d2div1.appendChild(d2d1div1);
-        d2div1.appendChild(d2d1div2);
+        Fadspace(Co2R1C1R3c1);
+        Co2R1C1R3c1.appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851585_216271631855613_2121533625_n.png"));
 
-        d2div2.appendChild(d2d2div1);
-        d2div2.appendChild(d2d2div2);
+        Co2R1C1R3C2h1 = document.createElement('h3');
+        Co2R1C1R3C2h1.innerHTML = "Share what's new in your life on your Timeline.";
+        Co2R1C1R3c2.appendChild(Co2R1C1R3C2h1);
 
-        d2div3.appendChild(d2d3div1);
-        d2div3.appendChild(d2d3div2);
-
-        d2d1div1.appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851565_602269956474188_918638970_n.png", 48, 43));
-        d2d2div1.appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851585_216271631855613_2121533625_n.png"));
-        d2d3div1.appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851558_160351450817973_1678868765_n.png"));
-
-        span2 = document.createElement('span');
-        span2.style.fontSize = 20;
-        s2Text = document.createElement('span');
-        s2Text.appendChild(document.createTextNode("See photos and updates"));
-        s2Text.style.fontWeight = "bold";
-        span2.appendChild(s2Text);
-        span2.appendChild(document.createTextNode(" from friends in News Feed."));
-
-        span3 = document.createElement('span');
-        span3.style.fontSize = 20;
-        s3Text = document.createElement('span');
-        s3Text.appendChild(document.createTextNode("Share what's new"));
-        s3Text.style.fontWeight = "bold";
-        span3.appendChild(s3Text);
-        span3.appendChild(document.createTextNode(" in your life on your Timeline."));
-
-        span4 = document.createElement('span');
-        span4.style.fontSize = 20;
-        s4Text = document.createElement('span');
-        s4Text.appendChild(document.createTextNode("Find more"));
-        s4Text.style.fontWeight = "bold";
-        span4.appendChild(s4Text);
-        span4.appendChild(document.createTextNode(" of what you're looking for with Facebook Search."));
-
-        d2d1div2.appendChild(span2);
-        d2d2div2.appendChild(span3);
-        d2d3div2.appendChild(span4);
-
-        div3 = document.createElement('div');
-        /*div3.style.background = "green";*/
-        div3.style.height = "700px";
-        div3.style.width = "550px";
-        FPos(div3, "125px", "745px");
-        div3.style.fontFamily = "helvetica", "arial", "sans-serif";
-
-        d3Span1 = document.createElement('span');
-        d3Span1.appendChild(document.createTextNode("Sing Up"));
-        d3Span1.style.fontSize = 50;
-        /*d3Span1.style.fontWeight = "bold";*/
-
-        d3Span2 = document.createElement('span');
-        d3Span2.appendChild(document.createTextNode("It's free and always will be."))
-        d3Span2.style.fontSize = 25;
-        FPos(d3Span2, "60px", "0px");
-
-        d3Input1 = document.createElement('input');
-        d3Input1.style.height = 50;
-        d3Input1.style.width = 235;
-        d3Input1.style.fontSize = 20;
-        d3Input1.placeholder = " First name";
-        /*d3Input1.defaultValue = "hola";*/
-        FPos(d3Input1, "120px", "5px");
-
-        d3Input2 = document.createElement('input');
-        d3Input2.style.height = 50;
-        d3Input2.style.width = 235;
-        d3Input2.style.fontSize = 20;
-        d3Input2.placeholder = " Last name";
-        FPos(d3Input2, "120px", "260px");
-
-        d3Input3 = document.createElement('input');
-        d3Input3.style.height = 50;
-        d3Input3.style.width = 490;
-        d3Input3.style.fontSize = 20;
-        d3Input3.placeholder = " Mobile number or email";
-        FPos(d3Input3, "180px", "5px");
-
-        d3Input4 = document.createElement('input');
-        d3Input4.style.height = 50;
-        d3Input4.style.width = 490;
-        d3Input4.style.fontSize = 20;
-        d3Input4.placeholder = " Re-enter mobile number or email";
-        FPos(d3Input4, "240px", "5px");
-
-        d3Input5 = document.createElement('input');
-        d3Input5.style.height = 50;
-        d3Input5.style.width = 490;
-        d3Input5.style.fontSize = 20;
-        d3Input5.placeholder = " New Password";
-        FPos(d3Input5, "300px", "5px");
+        Fadspace(Co2R1C1R3c2);
 
 
-        d3Span3 = document.createElement('span');
-        d3Span3.appendChild(document.createTextNode("Birthday"));
-        d3Span3.style.fontSize = 25;
-        FPos(d3Span3, "360px", "0px")
 
-        d3Select1 = document.createElement('select');
-        d3Select1.style.height = 35;
-        d3Select1.style.width = 85;
-        d3Select1.style.fontSize = 20;
+        Co2R1C1r4 = document.createElement('div');
+        Contain2R1c1.appendChild(Co2R1C1r4);
+        Co2R1C1R4c1 = document.createElement('div');
+        Co2R1C1R4c2 = document.createElement('div');
+        adclas([Co2R1C1R4c1], "col-xs-1");
+        adclas([Co2R1C1R4c2], "col-xs-11");
+        Co2R1C1r4.appendChild(Co2R1C1R4c1);
+        Co2R1C1r4.appendChild(Co2R1C1R4c2);
+
+        Fadspace(Co2R1C1R4c1);
+        Co2R1C1R4c1.appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851558_160351450817973_1678868765_n.png"));
+
+        Co2R1C1R4C2h1 = document.createElement('h3');
+        Co2R1C1R4C2h1.innerHTML = "Find more of what you're looking for with Facebook Search.";
+        Co2R1C1R4c2.appendChild(Co2R1C1R4C2h1);
+
+        adclas([Contain2r1, Co2R1C1r1, Co2R1C1r2], "row");
+        adclas([Contain2R1c1], "hidden-xs col-xs-7");
+        adclas([Contain2R1c2], "hidden-xs col-xs-5")
+        adclas([Co2R1C1R1c1], "col-xs-12");
+
+        Co2R1C2r1 = document.createElement('div');
+        Co2R1C2R1c1 = document.createElement('div');
+        Co2R1C2r1.appendChild(Co2R1C2R1c1);
+        Fadspace(Co2R1C2R1c1);
+        Co2R1C2R1C1h1 = document.createElement('h1');
+        Co2R1C2R1C1h1.innerHTML = "Sing Up";
+        Co2R1C2R1c1.appendChild(Co2R1C2R1C1h1);
+
+        Co2R1C2r2 = document.createElement('div');
+        Co2R1C2R2c1 = document.createElement('div');
+        Co2R1C2r2.appendChild(Co2R1C2R2c1);
+        Co2R1C2R2C1h1 = document.createElement('h4');
+        Co2R1C2R2C1h1.innerHTML = "It's free and always will be.";
+        Co2R1C2R2c1.appendChild(Co2R1C2R2C1h1);
+        Fadspace(Co2R1C2R2c1)
+
+        Co2R1C2r3 = document.createElement('div');
+        Co2R1C2R3c1 = document.createElement('div');
+        Co2R1C2r3.appendChild(Co2R1C2R3c1);
+        Co2R1C2R3c2 = document.createElement('div');
+        Co2R1C2r3.appendChild(Co2R1C2R3c2);
+        adclas([Co2R1C2R3c1, Co2R1C2R3c2], "col-xs-6")
+
+        Co2R1C2R3C1i1 = document.createElement("input");
+        Co2R1C2R3C1i1.setAttribute("class", "form-control");
+        Co2R1C2R3C1i1.setAttribute("id", "firstname");
+        Co2R1C2R3C1i1.setAttribute("placeholder", "First name");
+        Co2R1C2R3C1i1.style.height = "45px";
+
+        Co2R1C2R3c1.appendChild(Co2R1C2R3C1i1);
+        Fadspace(Co2R1C2R3c1)
+
+        Co2R1C2R3C2i1 = document.createElement("input");
+        Co2R1C2R3C2i1.setAttribute("class", "form-control");
+        Co2R1C2R3C2i1.setAttribute("id", "lastname");
+        Co2R1C2R3C2i1.setAttribute("placeholder", "Last name");
+        Co2R1C2R3C2i1.style.height = "45px";
+
+        Co2R1C2R3c2.appendChild(Co2R1C2R3C2i1);
+        Fadspace(Co2R1C2R3c2)
+
+        Co2R1C2r4 = document.createElement('div');
+        Co2R1C2R4c1 = document.createElement('div');
+        Co2R1C2r4.appendChild(Co2R1C2R4c1);
+        adclas([Co2R1C2R4c1], "col-xs-12")
+
+        Co2R1C2R4C1i1 = document.createElement("input");
+        Co2R1C2R4C1i1.setAttribute("class", "form-control");
+        Co2R1C2R4C1i1.setAttribute("id", "mobilenumberoremail");
+        Co2R1C2R4C1i1.setAttribute("placeholder", "Mobile number or email");
+        Co2R1C2R4C1i1.style.height = "45px";
+
+        Co2R1C2R4c1.appendChild(Co2R1C2R4C1i1);
+        Fadspace(Co2R1C2R4c1)
+
+        Co2R1C2r5 = document.createElement('div');
+        Co2R1C2R5c1 = document.createElement('div');
+        Co2R1C2r5.appendChild(Co2R1C2R5c1);
+        adclas([Co2R1C2R5c1], "col-xs-12")
+
+        Co2R1C2R5C1i1 = document.createElement("input");
+        Co2R1C2R5C1i1.setAttribute("class", "form-control");
+        Co2R1C2R5C1i1.setAttribute("id", "reentermobilenumberoremail");
+        Co2R1C2R5C1i1.setAttribute("placeholder", "Re-enter mobile number or email");
+        Co2R1C2R5C1i1.style.height = "45px";
+
+        Co2R1C2R5c1.appendChild(Co2R1C2R5C1i1);
+        Fadspace(Co2R1C2R5c1)
+
+        Co2R1C2r6 = document.createElement('div');
+        Co2R1C2R6c1 = document.createElement('div');
+        Co2R1C2r6.appendChild(Co2R1C2R6c1);
+        adclas([Co2R1C2R6c1], "col-xs-12")
+
+        Co2R1C2R6C1i1 = document.createElement("input");
+        Co2R1C2R6C1i1.setAttribute("class", "form-control");
+        Co2R1C2R6C1i1.setAttribute("id", "newpassword");
+        Co2R1C2R6C1i1.setAttribute("placeholder", "New password");
+        Co2R1C2R6C1i1.style.height = "45px";
+
+        Co2R1C2R6c1.appendChild(Co2R1C2R6C1i1);
+        Fadspace(Co2R1C2R6c1)
+
+        Co2R1C2r7 = document.createElement('div');
+        Co2R1C2R7c1 = document.createElement('div');
+        Co2R1C2r7.appendChild(Co2R1C2R7c1);
+        Co2R1C2R7C1h1 = document.createElement('h3');
+        Co2R1C2R7C1h1.innerHTML = "Birthday";
+        Co2R1C2R7c1.appendChild(Co2R1C2R7C1h1);
+
+
+        Co2R1C2r8 = document.createElement('div');
+        Co2R1C2R8c1 = document.createElement('div');
+        adclas([Co2R1C2R8c1], "col-xs-5");
+        Co2R1C2R8c2 = document.createElement('div');
+        adclas([Co2R1C2R8c2], "col-xs-5");
+        Co2R1C2R8c3 = document.createElement('div');
+        adclas([Co2R1C2R8c3], "col-xs-2");
+        Co2R1C2r8.appendChild(Co2R1C2R8c1)
+        Co2R1C2r8.appendChild(Co2R1C2R8c2)
+        Co2R1C2r8.appendChild(Co2R1C2R8c3)
+        Co2R1C2R8C3h1 = document.createElement('h1');
+        Co2R1C2R8C3h1.innerHTML = " ";
+        Co2R1C2R8c3.appendChild(Co2R1C2R8C3h1);
+
+        Co2R1C2R8C1c1 = document.createElement('div');
+        Co2R1C2R8C1c2 = document.createElement('div');
+        Co2R1C2R8C1c3 = document.createElement('div');
+        adclas([Co2R1C2R8C1c1, Co2R1C2R8C1c2, Co2R1C2R8C1c3], "col-xs-4");
+        Co2R1C2R8c1.appendChild(Co2R1C2R8C1c1);
+        Co2R1C2R8c1.appendChild(Co2R1C2R8C1c2);
+        Co2R1C2R8c1.appendChild(Co2R1C2R8C1c3);
+
+        
+        Co2R1C2R8C1C1s1 = document.createElement('select');
+        Co2R1C2R8C1c1.appendChild(Co2R1C2R8C1C1s1);
+        
         popSelect1 = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         for (i = 0; i < popSelect1.length; i++) {
             internalOption = document.createElement('option');
             internalOption.text = popSelect1[i];
-            d3Select1.appendChild(internalOption);
+            Co2R1C2R8C1C1s1.appendChild(internalOption);
         }
-        FPos(d3Select1, "400px", "5px");
 
-        d3Select2 = document.createElement('select');
-        d3Select2.style.height = 35;
-        d3Select2.style.width = 85;
-        d3Select2.style.fontSize = 20;
+        Co2R1C2R8C1C2s1 = document.createElement('select');
+        Co2R1C2R8C1c2.appendChild(Co2R1C2R8C1C2s1);
         for (i = 1; i < 32; i++) {
             internalOption = document.createElement('option');
             internalOption.text = i;
-            d3Select2.appendChild(internalOption);
+            Co2R1C2R8C1C2s1.appendChild(internalOption);
         }
-        FPos(d3Select2, "400px", "95px");
 
-        d3Select3 = document.createElement('select');
-        d3Select3.style.height = 35;
-        d3Select3.style.width = 85;
-        d3Select3.style.fontSize = 20;
+        Co2R1C2R8C1C3s1 = document.createElement('select');
+        Co2R1C2R8C1c3.appendChild(Co2R1C2R8C1C3s1);
         for (i = 2016; i > 1904; i--) {
             internalOption = document.createElement('option');
             internalOption.text = i;
-            d3Select3.appendChild(internalOption);
+            Co2R1C2R8C1C3s1.appendChild(internalOption);
         }
-        FPos(d3Select3, "400px", "185px");
 
-        d3Span4 = document.createElement('span');
-        d3Span4.style.color = "blue";
-        d3Span4.style.textDecoration = "underline";
-        FPos(d3Span4, "400px", "275px")
-        MultiLine(["Why do I need to provide my", "birthday?"], d3Span4);
+        adclas([Co2R1C2R8C1C1s1, Co2R1C2R8C1C2s1, Co2R1C2R8C1C3s1], "form-control")
 
-        d3Span6 = document.createElement('span');
+        Co2R1C2R8C2h1 = document.createElement('h5');
+        Co2R1C2R8C2h1.innerHTML = "Why do I need to provide my birthday?";
+        Co2R1C2R8c2.appendChild(Co2R1C2R8C2h1);
 
-        d3Input6 = document.createElement('input');
-        d3Input6.setAttribute("type", "radio");
-        d3Input6.setAttribute("value", "1");
-        d3Input6.setAttribute("name", "sex");
-        d3Input6.style.width = 17;
-        d3Input6.style.height = 17;
-        FPos(d3Input6, "450px", "5px");
-        
-        d3Input7 = document.createElement('input');
-        d3Input7.setAttribute("type", "radio");
-        d3Input7.setAttribute("value", "1");
-        d3Input7.setAttribute("name", "sex");
-        d3Input7.style.width = 17;
-        d3Input7.style.height = 17;
-        FPos(d3Input7, "450px", "125px");
-        
-        d3Label1 = document.createElement('label');
-        d3Label1.appendChild(document.createTextNode("Female"));
-        d3Label1.style.fontSize = 25;
-        FPos(d3Label1, "450px", "30px");
+        Co2R1C2r9 = document.createElement('div');
+        Co2R1C2R9c1 = document.createElement('div');
+        Co2R1C2R9c2 = document.createElement('div');
+        Co2R1C2R9c3 = document.createElement('div');
+        adclas([Co2R1C2R9c1, Co2R1C2R9c2], "col-xs-3")
+        adclas([Co2R1C2R9c3], "col-xs-6");
 
-        d3Label2 = document.createElement('label');
-        d3Label2.appendChild(document.createTextNode("Male"));
-        d3Label2.style.fontSize = 25;
-        FPos(d3Label2, "450px", "150px");
-        
-        d3Span6.appendChild(d3Input6);
-        d3Span6.appendChild(d3Label1);
-        d3Span6.appendChild(d3Input7);
-        d3Span6.appendChild(d3Label2);
+        Co2R1C2R9C1l1 = document.createElement('label');
+        Co2R1C2R9C1l2 = document.createElement('label');
+        Co2R1C2R9C1i1 = document.createElement('input');
+        Co2R1C2R9C1l1.appendChild(Co2R1C2R9C1i1);
+        Co2R1C2R9C1i2 = document.createElement('input');
+        Co2R1C2R9C1l2.appendChild(Co2R1C2R9C1i2)
+        Co2R1C2R9c1.appendChild(Co2R1C2R9C1l1)
+        Co2R1C2R9c1.appendChild(Co2R1C2R9C1l2)
 
-        d3Span7 = document.createElement('span');
-        MultiLine(["By clicking Sing Up, you agree yo our Terms and that you have", "read our Data Policy, including our Cookie Use."], d3Span7);
-        FPos(d3Span7, "500px", "0px")
 
-        d3Button1 = document.createElement('button');
-        d3Button1.style.width = "200px";
-        d3Button1.style.height = "50px";
-        d3Button1.style.textAlign = "center";
-        d3Button1.style.fontSize = 30;
-        d3Button1.style.webkitTextFillColor = "white";
-        d3Button1.appendChild(document.createTextNode("Sing Up"));
-        d3Button1.style.background = "#42A158";
-        FPos(d3Button1, "550px", "50px");
-        
-        d3Span8 = document.createElement('span');
-        d3Span8.appendChild(document.createTextNode("Create a Page for a celebrity, band or business."));
-        d3Span8.style.fontSize = 25;
-        FPos(d3Span8, "620px", "0px");
+        Co2R1C2R9C3h1 = document.createElement('h1');
+        Co2R1C2R9C3h1.innerHTML = " ";
+        Co2R1C2R9c3.appendChild(Co2R1C2R9C3h1);
 
-        div3.appendChild(d3Span1);
-        div3.appendChild(d3Span2);
-        div3.appendChild(d3Input1);
-        div3.appendChild(d3Input2);
-        div3.appendChild(d3Input3);
-        div3.appendChild(d3Input4);
-        div3.appendChild(d3Input5);
-        div3.appendChild(d3Span3);
-        div3.appendChild(d3Select1);
-        div3.appendChild(d3Select2);
-        div3.appendChild(d3Select3);
+        Co2R1C2r10 = document.createElement('div');
+        Co2R1C2r11 = document.createElement('div');
+        Co2R1C2r12 = document.createElement('div');
 
-        div3.appendChild(d3Span4);
 
-        div3.appendChild(d3Span6);
-        div3.appendChild(d3Span7);
 
-        div3.appendChild(d3Button1);
+        adclas([Co2R1C2r1, Co2R1C2r2, Co2R1C2r3, Co2R1C2r4, Co2R1C2r5, Co2R1C2r6], "row");
+        adclas([Co2R1C2r7, Co2R1C2r8, Co2R1C2r9, Co2R1C2r10, Co2R1C2r11, Co2R1C2r12], "row");
+        adclas([Co2R1C2R1c1, Co2R1C2R2c1, Co2R1C2R7c1], "col-xs-12");
 
-        div3.appendChild(d3Span8);
 
-        body[0].appendChild(div3);
-        /*div2.appendChild(document.createElement("br"));
-
-        /*MultiLine(["See photos and updates from friends in News Feed."], div2);*/
-        
-        /*MultiLine(["Share what's new in your life on your Timeline."], d2d2div2);
-        
-        MultiLine(["Find more of what you're looking for with Facebook Search"], d2d3div2)
-
-        /*body[0].appendChild(AddImageBody("http://www.underconsideration.com/brandnew/archives/facebook_2015_logo_detail.png", 400, 200));*/
-
-        /*
-        body[0].appendChild(document.createElement("br"));
-
-        ssp = body[0].appendChild(document.createElement("Pepe"));
-        MultiLine(["Connect with friends an the", "world around you on Facebook."]);
-
-        body[0].appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851565_602269956474188_918638970_n.png"));
-        MultiLine(["See photos and updates from friends in News Feed."]);
-        body[0].appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851585_216271631855613_2121533625_n.png"));
-        MultiLine(["Share what's new in your life on your Timeline."])
-        body[0].appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851558_160351450817973_1678868765_n.png"));
-        MultiLine(["Find more of what you're looking for with Facebook Search"])*/
+        Contain2R1c2.appendChild(Co2R1C2r1);
+        Contain2R1c2.appendChild(Co2R1C2r2);
+        Contain2R1c2.appendChild(Co2R1C2r3);
+        Contain2R1c2.appendChild(Co2R1C2r4);
+        Contain2R1c2.appendChild(Co2R1C2r5);
+        Contain2R1c2.appendChild(Co2R1C2r6);
+        Contain2R1c2.appendChild(Co2R1C2r7);
+        Contain2R1c2.appendChild(Co2R1C2r8);
+        Contain2R1c2.appendChild(Co2R1C2r9);
+        Contain2R1c2.appendChild(Co2R1C2r10);
+        Contain2R1c2.appendChild(Co2R1C2r11);
+        Contain2R1c2.appendChild(Co2R1C2r12);
     </script>
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
 </body>
 </html>
