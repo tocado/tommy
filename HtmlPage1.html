@@ -1,10 +1,513 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<html lang="en">
 <head>
-    <title></title>
-	<meta charset="utf-8" />
+    <title>Testeando</title>
+    <style type="text/css">
+        @import url('Content/bootstrap.min.css');
+
+        body {
+            margin: 0;
+            background-color: #D8E8ED;
+        }
+    </style>
 </head>
 <body>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        body = document.getElementsByTagName("body");
+        span = document.createElement("span");
 
+        function OnClickLogIn() {
+            var oReqShort = "";
+
+            oReq = new XMLHttpRequest();
+            oReq.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200){
+                    oReqShort = oReq.responseText.split("\n");
+                    FindPass(oReqShort[0].trim(), oReqShort[1].trim());
+                }
+            }
+            oReq.open("GET", "TextFile1.txt", true);
+            oReq.send();
+        }
+        function FindPass(user, pass) {
+            if (user == input.value && pass == input2.value) {
+                d1div1.style.background = "green";
+            }
+            else {
+                d1div1.style.background = "red";
+            }
+        }
+
+        function FPos(What, WTop, WLeft) {
+            What.style.position = "absolute";
+            What.style.top = WTop;
+            What.style.left = WLeft;
+        }
+
+        div1 = document.createElement("div");
+        div1.style.height = "100px";
+        div1.style.backgroundColor = "#3b5999";
+
+        d1div1 = document.createElement("div");
+        d1div1.style.height = "65px";
+        d1div1.style.width = "225px";
+        /*d1div1.style.background = "red";*/
+        /*d1div1.style.position = "absolute";
+        d1div1.style.left = "40px";
+        d1div1.style.top = "25px";*/
+        FPos(d1div1, "25px", "40px");
+        d1div1.style.textAlign = "center";
+
+        d1div2 = document.createElement("div");
+        d1div2.style.height = "85px";
+        d1div2.style.width = "500px";
+        /*d1div2.style.background = "red";*/
+        /*d1div2.style.position = "absolute";
+        d1div2.style.left = "760px";
+        d1div2.style.top = "5px";*/
+        FPos(d1div2, "5px", "760px");
+
+        label1 = document.createElement('span');
+        label1.appendChild(document.createTextNode("Email or Phone"));
+        /*label1.style.position = "absolute";
+        label1.style.left = "16px";
+        label1.style.top = "15px";*/
+        label1.style.color = "white";
+        FPos(label1, "15px", "16px");
+
+        input = document.createElement('input');
+        /*input.style.position = "absolute";
+        input.style.left = "15px";
+        input.style.top = "38px";*/
+        input.style.height = "27px";
+        input.style.width = "190px";
+        FPos(input, "38px", "15px");
+
+        label2 = document.createElement('span');
+        label2.appendChild(document.createTextNode("Password"));
+        /*label2.style.position = "absolute";
+        label2.style.left = "226px";
+        label2.style.top = "15px";*/
+        label2.style.color = "white";
+        FPos(label2, "15px", "226px");
+
+        input2 = document.createElement('input');
+        /*input2.style.position = "absolute";
+        input2.style.left = "225px";
+        input2.style.top = "38px";*/
+        input2.style.height = "27px";
+        input2.style.width = "190px";
+        FPos(input2, "38px", "225px");
+
+        label3 = document.createElement('span');
+        label3.appendChild(document.createTextNode("Forgot account?"));
+        /*label3.style.position = "absolute";
+        label3.style.left = "226px";
+        label3.style.top = "66px";*/
+        label3.style.color = "white";
+        FPos(label3, "66px", "226px");
+
+        button1 = document.createElement('button');
+        button1.style.width = "52px";
+        button1.style.height = "30px";
+        /*button1.style.position = "absolute";
+        button1.style.left = "433px";
+        button1.style.top = "35px";*/
+        button1.style.textAlign = "center";
+        button1.appendChild(document.createTextNode("Log In"));
+        button1.addEventListener("click", OnClickLogIn);
+        button1.style.background = "#4638C2";
+        button1.style.webkitTextFillColor = "white";
+        FPos(button1, "35px", "433px");
+
+        span.appendChild(document.createTextNode("facebook"));
+        span.style.fontSize = 60;
+        span.style.color = "white";
+
+        body[0].appendChild(div1);
+
+        div1.appendChild(d1div1);
+        div1.appendChild(d1div2);
+        d1div1.appendChild(span);
+        d1div2.appendChild(label1);
+        d1div2.appendChild(input);
+        d1div2.appendChild(label2);
+        d1div2.appendChild(input2);
+        d1div2.appendChild(label3);
+        d1div2.appendChild(button1);
+
+
+        function AddImageBody(animage, width, height) {
+            newimage = document.createElement("IMG");
+            newimage.setAttribute('src', animage);
+            if (width != null) { newimage.width = width; }
+            if (height != null) { newimage.height = height; }
+
+            return newimage;
+        }
+
+        function MultiLine(SomeText, where) {
+            internalspan = document.createElement("span");
+            for (i = 0; i < SomeText.length; i++) {
+                internalspan.appendChild(document.createTextNode(SomeText[i]));
+                internalspan.appendChild(document.createElement("br"));
+            }
+            if (where != null) { where.appendChild(internalspan); }
+            else { body[0].appendChild(internalspan); }
+        }
+
+        div2 = document.createElement("div");
+        div2.style.height = "400px";
+        div2.style.width = "700px";
+        /*div2.style.background = "green";*/
+        /*div2.style.position = "absolute";
+        div2.style.left = "15px";
+        div2.style.top = "150px";*/
+        FPos(div2, "150px", "15px");
+        /*div2.style.fontFamily = "Freight Sans Bold", "helvetica", "arial", "sans-serif";*/
+        /*div2.style.fontFamily = 'Freight Sans Bold';*/
+        div2.style.fontFamily = "helvetica", "arial", "sans-serif";
+
+        div2.style.padding = "42px 0 24px";
+        div2.style.fontSize = "28px";
+        div2.style.lineHeight = "36px";
+
+        d2div1 = document.createElement('div');
+        /*d2div1.style.background = "blue";*/
+        d2div1.style.height = "80px";
+        d2div1.style.width = "700px"
+        /*d2div1.style.position = "absolute";
+        d2div1.style.top = "165px";*/
+        FPos(d2div1, "165px", "0px");
+
+        d2d1div1 = document.createElement('div');
+        /*d2d1div1.style.background = "red";*/
+        d2d1div1.style.height = "50px";
+        d2d1div1.style.width = "50px"
+        /*d2d1div1.style.position = "absolute";
+        d2d1div1.style.left = "2px";
+        d2d1div1.style.top = "10px";*/
+        d2d1div1.style.verticalAlign = "middle";
+        FPos(d2d1div1, "10px", "2px");
+
+        d2d1div2 = document.createElement('div');
+        /*d2d1div2.style.background = "red";*/
+        d2d1div2.style.height = "40px";
+        d2d1div2.style.width = "640px"
+        /*d2d1div2.style.position = "absolute";
+        d2d1div2.style.left = "60px";
+        d2d1div2.style.top = "15px";*/
+        d2d1div2.style.verticalAlign = "middle";
+        FPos(d2d1div2, "15px", "60px");
+
+        d2div2 = document.createElement('div');
+        /*d2div2.style.background = "blue";*/
+        d2div2.style.height = "80px";
+        d2div2.style.width = "700px"
+        /*d2div2.style.position = "absolute";
+        d2div2.style.top = "265px";*/
+        FPos(d2div2, "265px", "0px");
+
+        d2d2div1 = document.createElement('div');
+        /*d2d2div1.style.background = "red";*/
+        d2d2div1.style.height = "50px";
+        d2d2div1.style.width = "50px"
+        /*d2d2div1.style.position = "absolute";
+        d2d2div1.style.left = "2px";
+        d2d2div1.style.top = "10px";*/
+        d2d2div1.style.verticalAlign = "middle";
+        FPos(d2d2div1, "10px", "2px");
+
+        d2d2div2 = document.createElement('div');
+        /*d2d2div2.style.background = "red";*/
+        d2d2div2.style.height = "40px";
+        d2d2div2.style.width = "640px"
+        /*d2d2div2.style.position = "absolute";
+        d2d2div2.style.left = "60px";
+        d2d2div2.style.top = "15px";*/
+        d2d2div2.style.verticalAlign = "middle";
+        FPos(d2d2div2, "15px", "60px");
+
+        d2div3 = document.createElement('div');
+        /*d2div3.style.background = "blue";*/
+        d2div3.style.height = "80px";
+        d2div3.style.width = "700px"
+        /*d2div3.style.position = "absolute";
+        d2div3.style.top = "365px";*/
+        FPos(d2div3, "365px", "0px");
+
+        d2d3div1 = document.createElement('div');
+        /*d2d3div1.style.background = "red";*/
+        d2d3div1.style.height = "50px";
+        d2d3div1.style.width = "50px"
+        /*d2d3div1.style.position = "absolute";
+        d2d3div1.style.left = "2px";
+        d2d3div1.style.top = "10px";*/
+        d2d3div1.style.verticalAlign = "middle";
+        FPos(d2d3div1, "10px", "2px");
+
+        d2d3div2 = document.createElement('div');
+        /*d2d3div2.style.background = "red";*/
+        d2d3div2.style.height = "40px";
+        d2d3div2.style.width = "640px"
+        /*d2d3div2.style.position = "absolute";
+        d2d3div2.style.left = "60px";
+        d2d3div2.style.top = "15px";*/
+        d2d3div2.style.verticalAlign = "middle";
+        FPos(d2d3div2, "15px", "60px");
+
+        body[0].appendChild(div2);
+
+        spanCon = document.createElement('span');
+        MultiLine(["Connect with friends and the", "world around you on Facebook."], spanCon);
+        div2.appendChild(spanCon);
+        spanCon.style.fontFamily = "helvetica", "arial", "sans-serif";
+        /*spanCon.style.fontWeight = "bold";*/
+        spanCon.style.fontSize = "38px";
+        spanCon.style.lineHeight = "36px";
+
+
+        div2.appendChild(d2div1);
+        div2.appendChild(d2div2);
+        div2.appendChild(d2div3);
+
+        d2div1.appendChild(d2d1div1);
+        d2div1.appendChild(d2d1div2);
+
+        d2div2.appendChild(d2d2div1);
+        d2div2.appendChild(d2d2div2);
+
+        d2div3.appendChild(d2d3div1);
+        d2div3.appendChild(d2d3div2);
+
+        d2d1div1.appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851565_602269956474188_918638970_n.png", 48, 43));
+        d2d2div1.appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851585_216271631855613_2121533625_n.png"));
+        d2d3div1.appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851558_160351450817973_1678868765_n.png"));
+
+        span2 = document.createElement('span');
+        span2.style.fontSize = 20;
+        s2Text = document.createElement('span');
+        s2Text.appendChild(document.createTextNode("See photos and updates"));
+        s2Text.style.fontWeight = "bold";
+        span2.appendChild(s2Text);
+        span2.appendChild(document.createTextNode(" from friends in News Feed."));
+
+        span3 = document.createElement('span');
+        span3.style.fontSize = 20;
+        s3Text = document.createElement('span');
+        s3Text.appendChild(document.createTextNode("Share what's new"));
+        s3Text.style.fontWeight = "bold";
+        span3.appendChild(s3Text);
+        span3.appendChild(document.createTextNode(" in your life on your Timeline."));
+
+        span4 = document.createElement('span');
+        span4.style.fontSize = 20;
+        s4Text = document.createElement('span');
+        s4Text.appendChild(document.createTextNode("Find more"));
+        s4Text.style.fontWeight = "bold";
+        span4.appendChild(s4Text);
+        span4.appendChild(document.createTextNode(" of what you're looking for with Facebook Search."));
+
+        d2d1div2.appendChild(span2);
+        d2d2div2.appendChild(span3);
+        d2d3div2.appendChild(span4);
+
+        cont3 = document.createElement('div');
+        /*cont3.style.background = "green";*/
+        cont3.style.height = "700px";
+        cont3.style.width = "550px";
+        FPos(cont3, "125px", "745px");
+        cont3.style.fontFamily = "helvetica", "arial", "sans-serif";
+
+        d3Span1 = document.createElement('span');
+        d3Span1.appendChild(document.createTextNode("Sing Up"));
+        d3Span1.style.fontSize = 50;
+        /*d3Span1.style.fontWeight = "bold";*/
+
+        d3Span2 = document.createElement('span');
+        d3Span2.appendChild(document.createTextNode("It's free and always will be."))
+        d3Span2.style.fontSize = 25;
+        FPos(d3Span2, "60px", "0px");
+
+        d3Input1 = document.createElement('input');
+        d3Input1.style.height = 50;
+        d3Input1.style.width = 235;
+        d3Input1.style.fontSize = 20;
+        d3Input1.placeholder = " First name";
+        /*d3Input1.defaultValue = "hola";*/
+        FPos(d3Input1, "120px", "5px");
+
+        d3Input2 = document.createElement('input');
+        d3Input2.style.height = 50;
+        d3Input2.style.width = 235;
+        d3Input2.style.fontSize = 20;
+        d3Input2.placeholder = " Last name";
+        FPos(d3Input2, "120px", "260px");
+
+        d3Input3 = document.createElement('input');
+        d3Input3.style.height = 50;
+        d3Input3.style.width = 490;
+        d3Input3.style.fontSize = 20;
+        d3Input3.placeholder = " Mobile number or email";
+        FPos(d3Input3, "180px", "5px");
+
+        d3Input4 = document.createElement('input');
+        d3Input4.style.height = 50;
+        d3Input4.style.width = 490;
+        d3Input4.style.fontSize = 20;
+        d3Input4.placeholder = " Re-enter mobile number or email";
+        FPos(d3Input4, "240px", "5px");
+
+        d3Input5 = document.createElement('input');
+        d3Input5.style.height = 50;
+        d3Input5.style.width = 490;
+        d3Input5.style.fontSize = 20;
+        d3Input5.placeholder = " New Password";
+        FPos(d3Input5, "300px", "5px");
+
+
+        d3Span3 = document.createElement('span');
+        d3Span3.appendChild(document.createTextNode("Birthday"));
+        d3Span3.style.fontSize = 25;
+        FPos(d3Span3, "360px", "0px")
+
+        d3Select1 = document.createElement('select');
+        d3Select1.style.height = 35;
+        d3Select1.style.width = 85;
+        d3Select1.style.fontSize = 20;
+        popSelect1 = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        for (i = 0; i < popSelect1.length; i++) {
+            internalOption = document.createElement('option');
+            internalOption.text = popSelect1[i];
+            d3Select1.appendChild(internalOption);
+        }
+        FPos(d3Select1, "400px", "5px");
+
+        d3Select2 = document.createElement('select');
+        d3Select2.style.height = 35;
+        d3Select2.style.width = 85;
+        d3Select2.style.fontSize = 20;
+        for (i = 1; i < 32; i++) {
+            internalOption = document.createElement('option');
+            internalOption.text = i;
+            d3Select2.appendChild(internalOption);
+        }
+        FPos(d3Select2, "400px", "95px");
+
+        d3Select3 = document.createElement('select');
+        d3Select3.style.height = 35;
+        d3Select3.style.width = 85;
+        d3Select3.style.fontSize = 20;
+        for (i = 2016; i > 1904; i--) {
+            internalOption = document.createElement('option');
+            internalOption.text = i;
+            d3Select3.appendChild(internalOption);
+        }
+        FPos(d3Select3, "400px", "185px");
+
+        d3Span4 = document.createElement('span');
+        d3Span4.style.color = "blue";
+        d3Span4.style.textDecoration = "underline";
+        FPos(d3Span4, "400px", "275px")
+        MultiLine(["Why do I need to provide my", "birthday?"], d3Span4);
+
+        d3Span6 = document.createElement('span');
+
+        d3Input6 = document.createElement('input');
+        d3Input6.setAttribute("type", "radio");
+        d3Input6.setAttribute("value", "1");
+        d3Input6.setAttribute("name", "sex");
+        d3Input6.style.width = 17;
+        d3Input6.style.height = 17;
+        FPos(d3Input6, "450px", "5px");
+
+        d3Input7 = document.createElement('input');
+        d3Input7.setAttribute("type", "radio");
+        d3Input7.setAttribute("value", "1");
+        d3Input7.setAttribute("name", "sex");
+        d3Input7.style.width = 17;
+        d3Input7.style.height = 17;
+        FPos(d3Input7, "450px", "125px");
+
+        d3Label1 = document.createElement('label');
+        d3Label1.appendChild(document.createTextNode("Female"));
+        d3Label1.style.fontSize = 25;
+        FPos(d3Label1, "450px", "30px");
+
+        d3Label2 = document.createElement('label');
+        d3Label2.appendChild(document.createTextNode("Male"));
+        d3Label2.style.fontSize = 25;
+        FPos(d3Label2, "450px", "150px");
+
+        d3Span6.appendChild(d3Input6);
+        d3Span6.appendChild(d3Label1);
+        d3Span6.appendChild(d3Input7);
+        d3Span6.appendChild(d3Label2);
+
+        d3Span7 = document.createElement('span');
+        MultiLine(["By clicking Sing Up, you agree yo our Terms and that you have", "read our Data Policy, including our Cookie Use."], d3Span7);
+        FPos(d3Span7, "500px", "0px")
+
+        d3Button1 = document.createElement('button');
+        d3Button1.style.width = "200px";
+        d3Button1.style.height = "50px";
+        d3Button1.style.textAlign = "center";
+        d3Button1.style.fontSize = 30;
+        d3Button1.style.webkitTextFillColor = "white";
+        d3Button1.appendChild(document.createTextNode("Sing Up"));
+        d3Button1.style.background = "#42A158";
+        FPos(d3Button1, "550px", "50px");
+
+        d3Span8 = document.createElement('span');
+        d3Span8.appendChild(document.createTextNode("Create a Page for a celebrity, band or business."));
+        d3Span8.style.fontSize = 25;
+        FPos(d3Span8, "620px", "0px");
+
+        cont3.appendChild(d3Span1);
+        cont3.appendChild(d3Span2);
+        cont3.appendChild(d3Input1);
+        cont3.appendChild(d3Input2);
+        cont3.appendChild(d3Input3);
+        cont3.appendChild(d3Input4);
+        cont3.appendChild(d3Input5);
+        cont3.appendChild(d3Span3);
+        cont3.appendChild(d3Select1);
+        cont3.appendChild(d3Select2);
+        cont3.appendChild(d3Select3);
+
+        cont3.appendChild(d3Span4);
+
+        cont3.appendChild(d3Span6);
+        cont3.appendChild(d3Span7);
+
+        cont3.appendChild(d3Button1);
+
+        cont3.appendChild(d3Span8);
+
+        body[0].appendChild(cont3);
+        /*div2.appendChild(document.createElement("br"));
+
+        /*MultiLine(["See photos and updates from friends in News Feed."], div2);*/
+
+        /*MultiLine(["Share what's new in your life on your Timeline."], d2d2div2);
+
+        MultiLine(["Find more of what you're looking for with Facebook Search"], d2d3div2)
+
+        /*body[0].appendChild(AddImageBody("http://www.underconsideration.com/brandnew/archives/facebook_2015_logo_detail.png", 400, 200));*/
+
+        /*
+        body[0].appendChild(document.createElement("br"));
+
+        ssp = body[0].appendChild(document.createElement("Pepe"));
+        MultiLine(["Connect with friends an the", "world around you on Facebook."]);
+
+        body[0].appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851565_602269956474188_918638970_n.png"));
+        MultiLine(["See photos and updates from friends in News Feed."]);
+        body[0].appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851585_216271631855613_2121533625_n.png"));
+        MultiLine(["Share what's new in your life on your Timeline."])
+        body[0].appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851558_160351450817973_1678868765_n.png"));
+        MultiLine(["Find more of what you're looking for with Facebook Search"])*/
+    </script>
 </body>
 </html>
