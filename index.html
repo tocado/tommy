@@ -1,11 +1,12 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="gemStore">
 <head>
     <meta charset="utf-8">
     <title>Testeando</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="Content/bootstrap.min.css" rel="stylesheet">
     <script src="Scripts/angular.js"></script>
+    <script src="MyScripts.js"></script>
     <style>
         .container-fluid {
             text-align: center;
@@ -107,27 +108,7 @@
 
         adclas([cont1], "container-fluid");
         adclas([C1row1], "row");
-        
-        /*BreakpointBT = angular.module('modules').factory('BreakpointService', function ($log) {
-            return {
-                isBreakpoint: function (alias) {
-                    return $('#detect-breakpoints .device-' + alias).is(':visible');
-                },
-                getBreakpoint: function () {
-                    var $visibleElement, breakpointStringsArray, currentBreakpoint;
-                    currentBreakpoint = void 0;
-                    $visibleElement = $('#detect-breakpoints .breakpoint:visible');
-                    breakpointStringsArray = [['device-xs', 'xs'], ['device-sm', 'sm'], ['device-md', 'md'], ['device-lg', 'lg']];
-                    _.each(breakpointStringsArray, function (breakpoint) {
-                        if ($visibleElement.hasClass(breakpoint[0])) {
-                            currentBreakpoint = breakpoint[1];
-                        }
-                    });
-                    return currentBreakpoint;
-                }
-            };
-        });
-        */
+
         body[0].appendChild(cont1);
 
         C1R1col1 = document.createElement("div");
@@ -275,9 +256,29 @@
         Co2R1C1R1C1h1 = document.createElement('h1');
         Co2R1C1R1C1h1.innerHTML = "Connect with firends and the world around you on Facebook.";
         Co2R1C1R1c1.appendChild(Co2R1C1R1C1h1);
-        Fadspace(Co2R1C1R1c1); Fadspace(Co2R1C1R1c1);
+        Fadspace(Co2R1C1R1c1); Fadspace(Co2R1C1R1c1); Fadspace(Co2R1C1R1c1); Fadspace(Co2R1C1R1c1);
         Co2R1C1r1.appendChild(Co2R1C1R1c1);
 
+
+        /* ANGULAR TEST */
+        Contain2R1c1.setAttribute("ng-controller", "StoreController as store");
+        testangular = document.createElement('div');
+        Contain2R1c1.appendChild(testangular);
+        adclas([testangular], "row");
+        testangular.setAttribute("ng-repeat", "product in store.products");
+        testangularc1 = document.createElement('div');
+        adclas([testangularc1], "col-xs-1");
+        testangularc1.appendChild(AddImageBody("{{product.image}}"));
+        testangular.appendChild(testangularc1);
+        testangularc = document.createElement('div');
+        adclas([testangularc], "col-sm-11");
+        testangular.appendChild(testangularc);
+        testangularh1 = document.createElement('h3');
+        testangularh1.innerHTML = "{{product.name}}";
+        testangularc.appendChild(testangularh1);
+
+        /* BEFORE ANGULAR */
+        /*
         Co2R1C1r2 = document.createElement('div');
         Contain2R1c1.appendChild(Co2R1C1r2);
         Co2R1C1R2c1 = document.createElement('div');
@@ -333,10 +334,17 @@
         Co2R1C1R4c2.appendChild(Co2R1C1R4C2h1);
 
         adclas([Contain2r1, Co2R1C1r1, Co2R1C1r2], "row");
+        */
+        
+        adclas([Contain2r1, Co2R1C1r1], "row");
         adclas([Contain2R1c1], "hidden-xs col-xs-7");
         adclas([Contain2R1c2], "hidden-xs col-xs-5")
         adclas([Co2R1C1R1c1], "col-xs-12");
 
+
+
+
+        /* RIGHT COLUMN */
         Co2R1C2r1 = document.createElement('div');
         Co2R1C2R1c1 = document.createElement('div');
         Co2R1C2r1.appendChild(Co2R1C2R1c1);
