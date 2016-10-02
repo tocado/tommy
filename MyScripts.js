@@ -78,15 +78,21 @@
         }
     ];
 
-    var mails = [
-    ];
+    app.controller('People', function () {
+        this.pep = mails;
+    });
 
-    app.controller('NewAccount', function () {
+    var mails = [{
+
+    }];
+
+    app.controller('NewAccount', function ($scope) {
         this.People = {};
 
         this.addAccount = function () {
             mails.push(this.People);
             this.People = {};
+            $scope.SingUpForm.$setPristine();
         }
     });
     var accountinf = [];
