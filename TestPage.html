@@ -5,60 +5,56 @@
     <title>Fakebook</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="Content/bootstrap.min.css" rel="stylesheet">
-    <link href="MyStyles.css" rel="stylesheet" />
     <script src="Scripts/jquery-3.1.0.js"></script>
     <script src="Scripts/angular.js"></script>
     <script src="MyScripts.js"></script>
 </head>
 <body>
     <div class="bluebar"></div>
-    <div class="container-fluid topbar divanim" >
-        <form name="LogInForm" ng-controller="People as Pepe" ng-submit="LogInForm.$valid" novalidate>
-            <div class="row">
-                <div class="col-sm-2" style="-webkit-text-fill-color: white">
-                    <br />
-                    <h1>fakebook</h1>
-                </div>
-                <div class="col-sm-3">
-                    <br />
-                    <h1> </h1>
-                </div>
-                <div class="col-sm-3">
-                    <div class="row">
-                        <div class="hidden-xs col-sm-12 topcoltext">
-                            <h5>Email or Phone</h5>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <input type="email" class="form-control" id="emailorphone" placeholder="Email or Phone" />
-                        </div>
+    <div class="container-fluid topbar divanim">
+        <div class="row">
+            <div class="col-sm-2" style="-webkit-text-fill-color: white">
+                <br />
+                <h1>fakebook</h1>
+            </div>
+            <div class="col-sm-3">
+                <br />
+                <h1> </h1>
+            </div>
+            <div class="col-sm-3">
+                <div class="row">
+                    <div class="hidden-xs col-sm-12 topcoltext" ">
+                        <h5>Email or Phone</h5>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <div class="row">
-                        <div class="hidden-xs col-sm-12 topcoltext">
-                            <h5>Password</h5>
-                        </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <input type="email" class="form-control" id="emailorphone" placeholder="Email or Phone" />
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <input type="password" class="form-control" id="passwordid" placeholder="Password" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="hidden-xs col-sm-12" style="text-align: left; -webkit-text-fill-color: rgb(144, 195, 212)">
-                            <h5>Forgot your password?</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-1" style="line-height: 90px;">
-                    <button type="submit" class="btn butmystyle" style="text-align: center; background: rgb(70, 56, 194); -webkit-text-fill-color: white;">Log In</button>
                 </div>
             </div>
-        </form>
+            <div class="col-sm-3">
+                <div class="row">
+                    <div class="hidden-xs col-sm-12 topcoltext">
+                        <h5>Password</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <input type="password" class="form-control" id="passwordid" placeholder="Password" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="hidden-xs col-sm-12" style="text-align: left; -webkit-text-fill-color: rgb(144, 195, 212)">
+                        <h5>Forgot your password?</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1" style="line-height: 90px;">
+                <button type="submit" class="btn butmystyle" style="text-align: center; background: rgb(70, 56, 194); -webkit-text-fill-color: white;">Log In</button>
+            </div>
+        </div>
     </div>
-
     <div class="container-fluid divanim" style="text-align: left; background-color: rgb(232, 242, 228)" ng-controller="StoreController as store">
         <div class="row">
             <div class="hidden-xs col-xs-7 contstore">
@@ -74,14 +70,11 @@
                         <br />
                     </div>
                 </div>
-                    <div class="row" ng-repeat="product in store.products">
-                        <div class="col-xs-2">
-                            <img src="{{product.image}}" class="center-block" />
-                        </div>
-                        <div class="col-xs-10">
-                            <h3>{{product.name}}</h3>
-                        </div>
+                <div class="row" ng-repeat="product in store.products">
+                    <div class="col-xs-12">
+                        <h1>{{product.name}}</h1>
                     </div>
+                </div>
             </div>
             <div class="hidden-xs col-xs-5">
                 <form name="SingUpForm" ng-controller="NewAccount as NAccount" ng-submit="SingUpForm.$valid && NAccount.addAccount()" novalidate>
@@ -99,46 +92,39 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
-                            <input class="form-control singupinput" name="firstname" placeholder="First name" ng-model="NAccount.People.First" required/>
-                            <h6 class="invalidtext" ng-show="SingUpForm.firstname.$invalid && SingUpForm.firstname.$dirty">You need to enter your name.</h6>
-                            <br ng-show="SingUpForm.firstname.$valid || SingUpForm.firstname.$pristine" />
+                            <input class="form-control singupinput" id="firstname" placeholder="First name" ng-model="NAccount.People.First" required />
+                            <br />
                         </div>
                         <div class="col-xs-6">
-                            <input class="form-control singupinput" name="lastname" placeholder="Last name" ng-model="NAccount.People.Last" required/>
-                            <h6 class="invalidtext" ng-show="SingUpForm.lastname.$invalid && SingUpForm.lastname.$dirty">You need to enter your last name.</h6>
-                            <br ng-show="SingUpForm.lastname.$valid || SingUpForm.lastname.$pristine" />
+                            <input class="form-control singupinput" id="lastname" placeholder="Last name" />
+                            <br />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <input class="form-control singupinput" type="email" name="email" placeholder="Mobile number or email" ng-model="NAccount.People.Mail" required/>
-                            <h6 class="invalidtext" ng-show="SingUpForm.email.$invalid && SingUpForm.email.$dirty">Enter a valid Email address.</h6>
-                            <br ng-show="SingUpForm.email.$valid || SingUpForm.email.$pristine" />
+                            <input class="form-control singupinput" id="mobilenumberoremail" placeholder="Mobile number or email" />
+                            <br />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <input class="form-control singupinput" type="email" name="reemail" placeholder="Re-enter mobile number or email" ng-model="NAccount.People.Mail2" ng-match="NAccount.People.Mail" required/>
-                            <h6 class="invalidtext" ng-show="SingUpForm.reemail.$invalid && SingUpForm.reemail.$dirty">Enter a valid Email address.</h6>
-                            <br ng-show="SingUpForm.reemail.$valid || SingUpForm.reemail.$pristine" />
+                            <input class="form-control singupinput" id="reentermobilenumberoremail" placeholder="Re-enter mobile number or email" />
+                            <br />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <input class="form-control singupinput" type="password" name="newpassword" placeholder="New password" ng-model="NAccount.People.Password" ng-minlength="8" required/>
-                            <h6 class="invalidtext" ng-show="SingUpForm.newpassword.$invalid && SingUpForm.newpassword.$dirty">This is not a valid password.</h6>
-                            <br ng-show="SingUpForm.newpassword.$valid || SingUpForm.newpassword.$pristine" />
+                            <input class="form-control singupinput" type="password" id="newpassword" placeholder="New password" />
+                            <br />
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12">
-                            <h3>Birthday</h3>
-                        </div>
+                        <h3>Birthday</h3>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-xs-5">
                             <div class="col-xs-4">
-                                <select class="form-control" style="width: 80px" ng-model="NAccount.People.Month" required>
+                                <select class="form-control">
                                     <option value="Jan">Jan</option>
                                     <option value="Feb">Feb</option>
                                     <option value="Mar">Mar</option>
@@ -154,7 +140,7 @@
                                 </select>
                             </div>
                             <div class="col-xs-4">
-                                <select class="form-control" style="width: 80px" ng-model="NAccount.People.Day" required>
+                                <select class="form-control">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -189,7 +175,7 @@
                                 </select>
                             </div>
                             <div class="col-xs-4">
-                                <select class="form-control" style="width: 80px" ng-model="NAccount.People.Year" required>
+                                <select class="form-control">
                                     <option value="2016">2016</option>
                                     <option value="2015">2015</option>
                                     <option value="2014">2014</option>
@@ -211,7 +197,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-xs-5">
                             <h5>Why do I need to provide my birthday?</h5>
                         </div>
                         <div class="col-xs-2">
@@ -219,61 +205,24 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-9">
-                            <h5>By clicking Sing Up, you agree on our Terms that you have read our Data Policy, including our Cookie Use.</h5>
-                        </div>
-                        <div class="col-xs-3">
-                            <h1> </h1>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-xs-3"> <h1> </h1></div>
                         <div class="col-xs-6" style="line-height: 90px;">
-                            <button type="submit" class="btn" ng-class="{validbuttonStyle: SingUpForm.$valid, invalidbuttonStyle: SingUpForm.$invalid}" style="text-align: center">Sing Up</button>
+                            <button type="submit" class="btn butmystyle" style="text-align: center; background: rgb(31, 138, 26)">Sing Up</button>
                         </div>
                         <div class="col-xs-3"> <h1> </h1></div>
                     </div>
+                    <div> SingUpForm is {{SingUpForm.$valid}} </div>
+                    <div class="row"></div>
                     <div class="row"></div>
                     <div class="row"></div>
                 </form>
             </div>
         </div>
+
     </div>
-    <div ng-controller="People as Pep">
-        <div class="row" ng-repeat="mail in Pep.pep">
-            <div class="col-xs-12">
-                <h3>Person</h3>
-                <h6>{{mail.First}}</h6>
-                <h6>{{mail.Last}}</h6>
-                <h6>{{mail.Mail}}</h6>
-                <h6>{{mail.Mail2}}</h6>
-                <h6>{{mail.Password}}</h6>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid" hidden>
-        <div class="row">
-            <div class="hidden-xs col-xs-12">
-                <h1>Welcome!!!</h1>
-                <h3>Now you can Log In, please, enter your Email and Password, and enjoy!</h3>
-            </div>
-        </div>
-    </div>
-    <script>
-        jQuery.fn.center = function () {
-            this.css("position", "absolute");
-            this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +
-                                                        $(window).scrollTop()) + "px");
-            return this;
-        }
-        $('div').first().center();
-        $(document).ready(function () {
-            $('div').first().animate({ top: 0, opacity: 1 }, 5000);
-            $('div').animate({ opacity: 1 }, 5000);
-        });
-    </script>
     <script src="Scripts/jquery-3.1.0.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/angular.min.js"></script>
+
 </body>
 </html>
