@@ -1,0 +1,25 @@
+﻿.container-fluid {
+    text-align: center;
+}
+.bluebar{
+    position: absolute;
+    height: 100px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgb(59, 89, 153);
+    opacity: 1;
+}
+ .topcoltext {
+     text-align: left;
+     height: 30px;
+ }
+ .singupinput {
+     height: 45px;
+ }
+ .butmystyle {
+     width: 90%;
+ }
+ .divanim{
+     opacity: 0;
+ }

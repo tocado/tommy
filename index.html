@@ -1,543 +1,242 @@
 ﻿<!DOCTYPE html>
-<html lang="en" ng-app="gemStore">
+<html ng-app="MyNewModule">
 <head>
     <meta charset="utf-8">
-    <title>Testeando</title>
+    <title>Fakebook</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="Content/bootstrap.min.css" rel="stylesheet">
+    <link href="MyStyles.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.1.0.js"></script>
     <script src="Scripts/angular.js"></script>
     <script src="MyScripts.js"></script>
-    <style>
-        .container-fluid {
-            text-align: center;
-        }
-        .borders {
-            border: 1px solid black;
-        }
-    </style>
 </head>
 <body>
-    <div id="detect-breakpoints">
-        <div class="breakpoint device-xs visible-xs"></div>
-        <div class="breakpoint device-sm visible-sm"></div>
-        <div class="breakpoint device-md visible-md"></div>
-        <div class="breakpoint device-lg visible-lg"></div>
+    <div class="bluebar"></div>
+    <div class="container-fluid topbar divanim">
+        <div class="row" >
+            <div class="col-sm-2" style="-webkit-text-fill-color: white">
+                <br />
+                <h1>fakebook</h1>
+            </div>
+            <div class="col-sm-3">
+                <br />
+                <h1> </h1>
+            </div>
+            <div class="col-sm-3">
+                <div class="row">
+                    <div class="hidden-xs col-sm-12 topcoltext"">
+                        <h5>Email or Phone</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <input type="email" class="form-control" id="emailorphone" placeholder="Email or Phone" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="row">
+                    <div class="hidden-xs col-sm-12 topcoltext">
+                        <h5>Password</h5>
+                    </div>
+                </div>
+                <div class="row" ng-controller="PasswordController">
+                    <div class="col-sm-12">
+                        <input type="password" class="form-control" id="passwordid" placeholder="Password" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="hidden-xs col-sm-12" style="text-align: left; -webkit-text-fill-color: rgb(144, 195, 212)">
+                        <h5>Forgot your password?</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1" style="line-height: 90px;">
+                <button type="submit" class="btn butmystyle" style="text-align: center; background: rgb(70, 56, 194); -webkit-text-fill-color: white;">Log In</button>
+            </div>
+        </div>
     </div>
-
-    <script type="text/javascript">
-        body = document.getElementsByTagName("body");
-        
-        function ApCh(where, what, clas) {
-            where.appendChild(what).setAttribute("class", clas);
+    <div class="container-fluid divanim" style="text-align: left; background-color: rgb(232, 242, 228)">
+        <div class="row">
+            <div class="hidden-xs col-xs-7 contstore" ng-controller="StoreController as store">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <br />
+                        <br />
+                        <br />
+                        <h1>Connect with friends and the world around you on FakeBook.</h1>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                </div>
+                <div class="row ng-scope" ng-repeat="product in store.products">
+                    <div class="col-sm-2">
+                        <img src="{{product.image}}" class="center-block" />
+                    </div>
+                    <div class="col-sm-10">
+                        <h3>{{product.name}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-xs col-xs-5">
+                <form name="SingUpForm" ng-controller="NewAccount as NAccount" ng-submit="SingUpForm.$valid && NAccount.addAccount()" novalidate>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <br />
+                            <h1>Sing Up</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h4>It's free and always will be.</h4>
+                            <br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <input class="form-control singupinput" id="firstname" placeholder="First name" ng-model="NAccount.People.First" required/>
+                            <br />
+                        </div>
+                        <div class="col-xs-6">
+                            <input class="form-control singupinput" id="lastname" placeholder="Last name" />
+                            <br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <input class="form-control singupinput" id="mobilenumberoremail" placeholder="Mobile number or email" />
+                            <br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <input class="form-control singupinput" id="reentermobilenumberoremail" placeholder="Re-enter mobile number or email" />
+                            <br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <input class="form-control singupinput" type="password" id="newpassword" placeholder="New password" />
+                            <br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3>Birthday</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="col-xs-4">
+                                <select class="form-control">
+                                    <option value="Jan">Jan</option>
+                                    <option value="Feb">Feb</option>
+                                    <option value="Mar">Mar</option>
+                                    <option value="Apr">Apr</option>
+                                    <option value="May">May</option>
+                                    <option value="Jun">Jun</option>
+                                    <option value="Jul">Jul</option>
+                                    <option value="Aug">Aug</option>
+                                    <option value="Sep">Sep</option>
+                                    <option value="Oct">Oct</option>
+                                    <option value="Nov">Nov</option>
+                                    <option value="Dec">Dec</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-4">
+                                <select class="form-control">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-4">
+                                <select class="form-control">
+                                    <option value="2016">2016</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2013">2013</option>
+                                    <option value="2012">2012</option>
+                                    <option value="2011">2011</option>
+                                    <option value="2010">2010</option>
+                                    <option value="2009">2009</option>
+                                    <option value="2008">2008</option>
+                                    <option value="2007">2007</option>
+                                    <option value="2006">2006</option>
+                                    <option value="2005">2005</option>
+                                    <option value="2004">2004</option>
+                                    <option value="2003">2003</option>
+                                    <option value="2002">2002</option>
+                                    <option value="2001">2001</option>
+                                    <option value="2000">2000</option>
+                                    <option value="1999">1999</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-5">
+                            <h5>Why do I need to provide my birthday?</h5>
+                        </div>
+                        <div class="col-xs-2">
+                            <h1> </h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3"> <h1> </h1></div>
+                        <div class="col-xs-6" style="line-height: 90px;">
+                            <button type="submit" class="btn butmystyle" style="text-align: center; background: rgb(31, 138, 26)">Sing Up</button>
+                        </div>
+                        <div class="col-xs-3"> <h1> </h1></div>
+                    </div>
+                    <div> SingUpForm is {{SingUpForm.$valid}} </div>
+                    <div class="row"></div>
+                    <div class="row"></div>
+                    <div class="row"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        jQuery.fn.center = function () {
+            this.css("position", "absolute");
+            this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +
+                                                        $(window).scrollTop()) + "px");
+            return this;
         }
-
-
-        function MultiLine(SomeText, where) {
-            internalspan = document.createElement("span");
-            for (i = 0; i < SomeText.length; i++) {
-                internalspan.appendChild(document.createTextNode(SomeText[i]));
-                internalspan.appendChild(document.createElement("br"));
-            }
-            if (where != null) { where.appendChild(internalspan); }
-            else { body[0].appendChild(internalspan); }
-        }
-        function adclas(What, clasname) {
-            for (i = 0; i < What.length; i++) {
-                What[i].setAttribute("class", clasname);
-            }
-        }
-
-
-        body = document.getElementsByTagName("body");
-        span = document.createElement("span");
-        
-        function OnClickLogIn() {
-            var oReqShort = "";
-
-            oReq = new XMLHttpRequest();
-            oReq.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    oReqShort = oReq.responseText.split("\n");
-                    FindPass(oReqShort[0].trim(), oReqShort[1].trim());
-                }
-            }
-            oReq.open("GET", "TextFile1.txt", true);
-            oReq.send();
-        }
-        function FindPass(user, pass) {
-            if (user == input.value && pass == input2.value) {
-                d1div1.style.background = "green";
-            }
-            else {
-                d1div1.style.background = "red";
-            }
-        }
-
-        function FPos(What, WTop, WLeft) {
-            What.style.position = "absolute";
-            What.style.top = WTop;
-            What.style.left = WLeft;
-        }
-
-        function Fadspace(What) {
-            What.appendChild(document.createElement('br'));
-        }
-
-        testcontainer = document.createElement('div');
-        testcontainer.style.height = "100px";
-        FPos(testcontainer, "0px", "0px");
-        testcontainer.style.right = "0px";
-        testR1 = document.createElement('div');
-        adclas([testR1], "row");
-        testC1 = document.createElement('div');
-        adclas([testC1], "col-xs-12");
-        testC1.style.backgroundColor = "#3b5999";
-        testC1.style.height = "100px";
-        testcontainer.appendChild(testR1);
-        testR1.appendChild(testC1);
-
-
-        body[0].appendChild(testcontainer);
-
-
-
-        cont1 = document.createElement("div");
-
-        C1row1 = document.createElement("div");
-        cont1.appendChild(C1row1);
-
-        adclas([cont1], "container-fluid");
-        adclas([C1row1], "row");
-
-        body[0].appendChild(cont1);
-
-        C1R1col1 = document.createElement("div");
-        C1row1.appendChild(C1R1col1);
-        adclas([C1R1col1], "col-sm-2");
-        C1R1Co1h1 = document.createElement("h1");
-        C1R1Co1h1.innerHTML = "fakebook";
-        Fadspace(C1R1col1);
-        C1R1col1.appendChild(C1R1Co1h1);
-
-        C1R1col2 = document.createElement("div");
-        C1row1.appendChild(C1R1col2);
-        adclas([C1R1col2], "col-sm-3");
-        Fadspace(C1R1col2);
-        C1R1Co2h1 = document.createElement("h1");
-        C1R1Co2h1.innerHTML = " ";
-        C1R1col2.appendChild(C1R1Co2h1);
-
-        C1R1col3 = document.createElement("div");
-        C1row1.appendChild(C1R1col3);
-        adclas([C1R1col3], "col-sm-3");
-
-        row5 = document.createElement("div");
-        adclas([row5], "row");
-        Column5 = document.createElement("div");
-        adclas([Column5], "hidden-xs col-sm-12");
-        row5.appendChild(Column5);
-        C1R1col3.appendChild(row5);
-        column5h1 = document.createElement('h5');
-        column5h1.innerHTML = "Email or Phone";
-        Column5.appendChild(column5h1);
-        Column5.style.textAlign = "left";
-        Column5.style.height = "30px";
-
-        C1R1Co3row1 = document.createElement("div");
-        C1R1col3.appendChild(C1R1Co3row1)
-        adclas([C1R1Co3row1], "row");
-
-        Column2 = document.createElement("div");
-        adclas([Column2], "col-sm-12");
-        C1R1Co3row1.appendChild(Column2);
-
-        input1 = document.createElement("input");
-        input1.setAttribute("type", "email");
-        input1.setAttribute("class", "form-control");
-        input1.setAttribute("id", "emailorphone");
-        input1.setAttribute("placeholder", "Email or Phone");
-
-        Column2.appendChild(input1);
-
-        C1R1col4 = document.createElement("div");
-        C1row1.appendChild(C1R1col4);
-        adclas([C1R1col4], "col-sm-3")
-
-        row6 = document.createElement("div");
-        adclas([row6], "row");
-        Column6 = document.createElement("div");
-        adclas([Column6], "hidden-xs col-sm-12");
-        row6.appendChild(Column6);
-        C1R1col4.appendChild(row6);
-        column6h1 = document.createElement('h5');
-        column6h1.innerHTML = "Password";
-        Column6.appendChild(column6h1);
-        Column6.style.textAlign = "left";
-        Column6.style.height = "30px";
-        row2 = document.createElement("div");
-        C1R1col4.appendChild(row2);
-        adclas([row2], "row");
-
-        Column3 = document.createElement("div");
-        adclas([Column3], "col-sm-12");
-        row2.appendChild(Column3);
-
-        input2 = document.createElement("input");
-        input2.setAttribute("type", "password");
-        input2.setAttribute("class", "form-control");
-        input2.setAttribute("id", "password");
-        input2.setAttribute("placeholder", "Password");
-
-        Column3.appendChild(input2);
-
-        row3 = document.createElement("div");
-        C1R1col4.appendChild(row3);
-        adclas([row3], "row");
-
-        Column4 = document.createElement("div");
-        adclas([Column4], "hidden-xs col-sm-12");
-        row3.appendChild(Column4);
-        column4H1 = document.createElement('h5');
-        column4H1.innerHTML = "Forgot your password?";
-        Column4.appendChild(column4H1);
-        Column4.style.textAlign = "left";
-        Column4.style.webkitTextFillColor = "#90C3D4";
-
-
-        C1R1col5 = document.createElement("div");
-        C1row1.appendChild(C1R1col5);
-        adclas([C1R1col5], "col-sm-1");
-
-        cont1.style.webkitTextFillColor = "white";
-
-        button1 = document.createElement('button');
-        button1.style.textAlign = "center";
-        button1.style.background = "#4638C2";
-        button1.style.webkitTextFillColor = "white";
-        button1.setAttribute("type", "submit");
-        button1.innerHTML = "Log In";
-        adclas([button1], "btn btn-default");
-
-        C1R1col5.appendChild(button1);
-        C1R1col5.style.lineHeight = "90px";
-
-
-        function AddImageBody(animage, width, height) {
-            newimage = document.createElement("IMG");
-            newimage.setAttribute('src', animage);
-            if (width != null) { newimage.width = width; }
-            if (height != null) { newimage.height = height; }
-
-            return newimage;
-        }
-
-        contain2 = document.createElement('div');
-        contain2.style.fontFamily = "helvetica", "arial", "sans-serif";
-        adclas([contain2], "container-fluid");
-        contain2.style.alignContent = "left";
-        contain2.style.textAlign = "left";
-        contain2.style.backgroundColor = "#E8F2E4";
-
-
-        body[0].appendChild(contain2);
-        Contain2r1 = document.createElement('div');
-        contain2.appendChild(Contain2r1);
-        Contain2R1c1 = document.createElement('div');
-        Contain2R1c2 = document.createElement('div');
-        Contain2r1.appendChild(Contain2R1c1);
-        Contain2r1.appendChild(Contain2R1c2);
-
-
-        Co2R1C1r1 = document.createElement('div');
-        Contain2R1c1.appendChild(Co2R1C1r1);
-        
-        Co2R1C1R1c1 = document.createElement('div');
-        Fadspace(Co2R1C1R1c1); Fadspace(Co2R1C1R1c1); Fadspace(Co2R1C1R1c1);
-        Co2R1C1R1C1h1 = document.createElement('h1');
-        Co2R1C1R1C1h1.innerHTML = "Connect with firends and the world around you on Facebook.";
-        Co2R1C1R1c1.appendChild(Co2R1C1R1C1h1);
-        Fadspace(Co2R1C1R1c1); Fadspace(Co2R1C1R1c1); Fadspace(Co2R1C1R1c1); Fadspace(Co2R1C1R1c1);
-        Co2R1C1r1.appendChild(Co2R1C1R1c1);
-
-
-        /* ANGULAR TEST */
-        Contain2R1c1.setAttribute("ng-controller", "StoreController as store");
-        testangular = document.createElement('div');
-        Contain2R1c1.appendChild(testangular);
-        adclas([testangular], "row");
-        testangular.setAttribute("ng-repeat", "product in store.products");
-        testangularc1 = document.createElement('div');
-        adclas([testangularc1], "col-xs-1");
-        testangularc1.appendChild(AddImageBody("{{product.image}}"));
-        testangular.appendChild(testangularc1);
-        testangularc = document.createElement('div');
-        adclas([testangularc], "col-sm-11");
-        testangular.appendChild(testangularc);
-        testangularh1 = document.createElement('h3');
-        testangularh1.innerHTML = "{{product.name}}";
-        testangularc.appendChild(testangularh1);
-
-        /* BEFORE ANGULAR */
-        /*
-        Co2R1C1r2 = document.createElement('div');
-        Contain2R1c1.appendChild(Co2R1C1r2);
-        Co2R1C1R2c1 = document.createElement('div');
-        Co2R1C1R2c2 = document.createElement('div');
-        adclas([Co2R1C1R2c1], "col-xs-1");
-        adclas([Co2R1C1R2c2], "col-xs-11");
-        Co2R1C1r2.appendChild(Co2R1C1R2c1);
-        Co2R1C1r2.appendChild(Co2R1C1R2c2);
-
-        Fadspace(Co2R1C1R2c1);
-        Co2R1C1R2c1.appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851565_602269956474188_918638970_n.png"));
-
-        Co2R1C1R2C2h1 = document.createElement('h3');
-        Co2R1C1R2C2h1.innerHTML = "See photos and updates from friends in News Feed.";
-        Co2R1C1R2c2.appendChild(Co2R1C1R2C2h1);
-        Fadspace(Co2R1C1R2c2);
-
-
-        Co2R1C1r3 = document.createElement('div');
-        Contain2R1c1.appendChild(Co2R1C1r3);
-        Co2R1C1R3c1 = document.createElement('div');
-        Co2R1C1R3c2 = document.createElement('div');
-        adclas([Co2R1C1R3c1], "col-sm-1");
-        adclas([Co2R1C1R3c2], "col-sm-11");
-        Co2R1C1r3.appendChild(Co2R1C1R3c1);
-        Co2R1C1r3.appendChild(Co2R1C1R3c2);
-
-        Fadspace(Co2R1C1R3c1);
-        Co2R1C1R3c1.appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851585_216271631855613_2121533625_n.png"));
-
-        Co2R1C1R3C2h1 = document.createElement('h3');
-        Co2R1C1R3C2h1.innerHTML = "Share what's new in your life on your Timeline.";
-        Co2R1C1R3c2.appendChild(Co2R1C1R3C2h1);
-
-        Fadspace(Co2R1C1R3c2);
-
-
-
-        Co2R1C1r4 = document.createElement('div');
-        Contain2R1c1.appendChild(Co2R1C1r4);
-        Co2R1C1R4c1 = document.createElement('div');
-        Co2R1C1R4c2 = document.createElement('div');
-        adclas([Co2R1C1R4c1], "col-xs-1");
-        adclas([Co2R1C1R4c2], "col-xs-11");
-        Co2R1C1r4.appendChild(Co2R1C1R4c1);
-        Co2R1C1r4.appendChild(Co2R1C1R4c2);
-
-        Fadspace(Co2R1C1R4c1);
-        Co2R1C1R4c1.appendChild(AddImageBody("https://scontent.fgig1-1.fna.fbcdn.net/t39.2365-6/851558_160351450817973_1678868765_n.png"));
-
-        Co2R1C1R4C2h1 = document.createElement('h3');
-        Co2R1C1R4C2h1.innerHTML = "Find more of what you're looking for with Facebook Search.";
-        Co2R1C1R4c2.appendChild(Co2R1C1R4C2h1);
-
-        adclas([Contain2r1, Co2R1C1r1, Co2R1C1r2], "row");
-        */
-        
-        adclas([Contain2r1, Co2R1C1r1], "row");
-        adclas([Contain2R1c1], "hidden-xs col-xs-7");
-        adclas([Contain2R1c2], "hidden-xs col-xs-5")
-        adclas([Co2R1C1R1c1], "col-xs-12");
-
-
-
-
-        /* RIGHT COLUMN */
-        Co2R1C2r1 = document.createElement('div');
-        Co2R1C2R1c1 = document.createElement('div');
-        Co2R1C2r1.appendChild(Co2R1C2R1c1);
-        Fadspace(Co2R1C2R1c1);
-        Co2R1C2R1C1h1 = document.createElement('h1');
-        Co2R1C2R1C1h1.innerHTML = "Sing Up";
-        Co2R1C2R1c1.appendChild(Co2R1C2R1C1h1);
-
-        Co2R1C2r2 = document.createElement('div');
-        Co2R1C2R2c1 = document.createElement('div');
-        Co2R1C2r2.appendChild(Co2R1C2R2c1);
-        Co2R1C2R2C1h1 = document.createElement('h4');
-        Co2R1C2R2C1h1.innerHTML = "It's free and always will be.";
-        Co2R1C2R2c1.appendChild(Co2R1C2R2C1h1);
-        Fadspace(Co2R1C2R2c1)
-
-        Co2R1C2r3 = document.createElement('div');
-        Co2R1C2R3c1 = document.createElement('div');
-        Co2R1C2r3.appendChild(Co2R1C2R3c1);
-        Co2R1C2R3c2 = document.createElement('div');
-        Co2R1C2r3.appendChild(Co2R1C2R3c2);
-        adclas([Co2R1C2R3c1, Co2R1C2R3c2], "col-xs-6")
-
-        Co2R1C2R3C1i1 = document.createElement("input");
-        Co2R1C2R3C1i1.setAttribute("class", "form-control");
-        Co2R1C2R3C1i1.setAttribute("id", "firstname");
-        Co2R1C2R3C1i1.setAttribute("placeholder", "First name");
-        Co2R1C2R3C1i1.style.height = "45px";
-
-        Co2R1C2R3c1.appendChild(Co2R1C2R3C1i1);
-        Fadspace(Co2R1C2R3c1)
-
-        Co2R1C2R3C2i1 = document.createElement("input");
-        Co2R1C2R3C2i1.setAttribute("class", "form-control");
-        Co2R1C2R3C2i1.setAttribute("id", "lastname");
-        Co2R1C2R3C2i1.setAttribute("placeholder", "Last name");
-        Co2R1C2R3C2i1.style.height = "45px";
-
-        Co2R1C2R3c2.appendChild(Co2R1C2R3C2i1);
-        Fadspace(Co2R1C2R3c2)
-
-        Co2R1C2r4 = document.createElement('div');
-        Co2R1C2R4c1 = document.createElement('div');
-        Co2R1C2r4.appendChild(Co2R1C2R4c1);
-        adclas([Co2R1C2R4c1], "col-xs-12")
-
-        Co2R1C2R4C1i1 = document.createElement("input");
-        Co2R1C2R4C1i1.setAttribute("class", "form-control");
-        Co2R1C2R4C1i1.setAttribute("id", "mobilenumberoremail");
-        Co2R1C2R4C1i1.setAttribute("placeholder", "Mobile number or email");
-        Co2R1C2R4C1i1.style.height = "45px";
-
-        Co2R1C2R4c1.appendChild(Co2R1C2R4C1i1);
-        Fadspace(Co2R1C2R4c1)
-
-        Co2R1C2r5 = document.createElement('div');
-        Co2R1C2R5c1 = document.createElement('div');
-        Co2R1C2r5.appendChild(Co2R1C2R5c1);
-        adclas([Co2R1C2R5c1], "col-xs-12")
-
-        Co2R1C2R5C1i1 = document.createElement("input");
-        Co2R1C2R5C1i1.setAttribute("class", "form-control");
-        Co2R1C2R5C1i1.setAttribute("id", "reentermobilenumberoremail");
-        Co2R1C2R5C1i1.setAttribute("placeholder", "Re-enter mobile number or email");
-        Co2R1C2R5C1i1.style.height = "45px";
-
-        Co2R1C2R5c1.appendChild(Co2R1C2R5C1i1);
-        Fadspace(Co2R1C2R5c1)
-
-        Co2R1C2r6 = document.createElement('div');
-        Co2R1C2R6c1 = document.createElement('div');
-        Co2R1C2r6.appendChild(Co2R1C2R6c1);
-        adclas([Co2R1C2R6c1], "col-xs-12")
-
-        Co2R1C2R6C1i1 = document.createElement("input");
-        Co2R1C2R6C1i1.setAttribute("class", "form-control");
-        Co2R1C2R6C1i1.setAttribute("id", "newpassword");
-        Co2R1C2R6C1i1.setAttribute("placeholder", "New password");
-        Co2R1C2R6C1i1.style.height = "45px";
-
-        Co2R1C2R6c1.appendChild(Co2R1C2R6C1i1);
-        Fadspace(Co2R1C2R6c1)
-
-        Co2R1C2r7 = document.createElement('div');
-        Co2R1C2R7c1 = document.createElement('div');
-        Co2R1C2r7.appendChild(Co2R1C2R7c1);
-        Co2R1C2R7C1h1 = document.createElement('h3');
-        Co2R1C2R7C1h1.innerHTML = "Birthday";
-        Co2R1C2R7c1.appendChild(Co2R1C2R7C1h1);
-
-
-        Co2R1C2r8 = document.createElement('div');
-        Co2R1C2R8c1 = document.createElement('div');
-        adclas([Co2R1C2R8c1], "col-xs-5");
-        Co2R1C2R8c2 = document.createElement('div');
-        adclas([Co2R1C2R8c2], "col-xs-5");
-        Co2R1C2R8c3 = document.createElement('div');
-        adclas([Co2R1C2R8c3], "col-xs-2");
-        Co2R1C2r8.appendChild(Co2R1C2R8c1)
-        Co2R1C2r8.appendChild(Co2R1C2R8c2)
-        Co2R1C2r8.appendChild(Co2R1C2R8c3)
-        Co2R1C2R8C3h1 = document.createElement('h1');
-        Co2R1C2R8C3h1.innerHTML = " ";
-        Co2R1C2R8c3.appendChild(Co2R1C2R8C3h1);
-
-        Co2R1C2R8C1c1 = document.createElement('div');
-        Co2R1C2R8C1c2 = document.createElement('div');
-        Co2R1C2R8C1c3 = document.createElement('div');
-        adclas([Co2R1C2R8C1c1, Co2R1C2R8C1c2, Co2R1C2R8C1c3], "col-xs-4");
-        Co2R1C2R8c1.appendChild(Co2R1C2R8C1c1);
-        Co2R1C2R8c1.appendChild(Co2R1C2R8C1c2);
-        Co2R1C2R8c1.appendChild(Co2R1C2R8C1c3);
-
-        
-        Co2R1C2R8C1C1s1 = document.createElement('select');
-        Co2R1C2R8C1c1.appendChild(Co2R1C2R8C1C1s1);
-        
-        popSelect1 = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        for (i = 0; i < popSelect1.length; i++) {
-            internalOption = document.createElement('option');
-            internalOption.text = popSelect1[i];
-            Co2R1C2R8C1C1s1.appendChild(internalOption);
-        }
-
-        Co2R1C2R8C1C2s1 = document.createElement('select');
-        Co2R1C2R8C1c2.appendChild(Co2R1C2R8C1C2s1);
-        for (i = 1; i < 32; i++) {
-            internalOption = document.createElement('option');
-            internalOption.text = i;
-            Co2R1C2R8C1C2s1.appendChild(internalOption);
-        }
-
-        Co2R1C2R8C1C3s1 = document.createElement('select');
-        Co2R1C2R8C1c3.appendChild(Co2R1C2R8C1C3s1);
-        for (i = 2016; i > 1904; i--) {
-            internalOption = document.createElement('option');
-            internalOption.text = i;
-            Co2R1C2R8C1C3s1.appendChild(internalOption);
-        }
-
-        adclas([Co2R1C2R8C1C1s1, Co2R1C2R8C1C2s1, Co2R1C2R8C1C3s1], "form-control")
-
-        Co2R1C2R8C2h1 = document.createElement('h5');
-        Co2R1C2R8C2h1.innerHTML = "Why do I need to provide my birthday?";
-        Co2R1C2R8c2.appendChild(Co2R1C2R8C2h1);
-
-        Co2R1C2r9 = document.createElement('div');
-        Co2R1C2R9c1 = document.createElement('div');
-        Co2R1C2R9c2 = document.createElement('div');
-        Co2R1C2R9c3 = document.createElement('div');
-        adclas([Co2R1C2R9c1, Co2R1C2R9c2], "col-xs-3")
-        adclas([Co2R1C2R9c3], "col-xs-6");
-
-        Co2R1C2R9C1l1 = document.createElement('label');
-        Co2R1C2R9C1l2 = document.createElement('label');
-        Co2R1C2R9C1i1 = document.createElement('input');
-        Co2R1C2R9C1l1.appendChild(Co2R1C2R9C1i1);
-        Co2R1C2R9C1i2 = document.createElement('input');
-        Co2R1C2R9C1l2.appendChild(Co2R1C2R9C1i2)
-        Co2R1C2R9c1.appendChild(Co2R1C2R9C1l1)
-        Co2R1C2R9c1.appendChild(Co2R1C2R9C1l2)
-
-
-        Co2R1C2R9C3h1 = document.createElement('h1');
-        Co2R1C2R9C3h1.innerHTML = " ";
-        Co2R1C2R9c3.appendChild(Co2R1C2R9C3h1);
-
-        Co2R1C2r10 = document.createElement('div');
-        Co2R1C2r11 = document.createElement('div');
-        Co2R1C2r12 = document.createElement('div');
-
-
-
-        adclas([Co2R1C2r1, Co2R1C2r2, Co2R1C2r3, Co2R1C2r4, Co2R1C2r5, Co2R1C2r6], "row");
-        adclas([Co2R1C2r7, Co2R1C2r8, Co2R1C2r9, Co2R1C2r10, Co2R1C2r11, Co2R1C2r12], "row");
-        adclas([Co2R1C2R1c1, Co2R1C2R2c1, Co2R1C2R7c1], "col-xs-12");
-
-
-        Contain2R1c2.appendChild(Co2R1C2r1);
-        Contain2R1c2.appendChild(Co2R1C2r2);
-        Contain2R1c2.appendChild(Co2R1C2r3);
-        Contain2R1c2.appendChild(Co2R1C2r4);
-        Contain2R1c2.appendChild(Co2R1C2r5);
-        Contain2R1c2.appendChild(Co2R1C2r6);
-        Contain2R1c2.appendChild(Co2R1C2r7);
-        Contain2R1c2.appendChild(Co2R1C2r8);
-        Contain2R1c2.appendChild(Co2R1C2r9);
-        Contain2R1c2.appendChild(Co2R1C2r10);
-        Contain2R1c2.appendChild(Co2R1C2r11);
-        Contain2R1c2.appendChild(Co2R1C2r12);
+        $('div').first().center();
+        $(document).ready(function () {
+            $('div').first().animate({ top: 0, opacity: 1 }, 5000);
+            $('div').animate({ opacity: 1 }, 5000);
+        });
     </script>
-    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/jquery-3.1.0.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
-    <script src="Scripts/angular.min.js"></script>
 </body>
 </html>
