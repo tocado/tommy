@@ -5,9 +5,13 @@
     <title>Fakebook</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="Content/bootstrap.min.css" rel="stylesheet">
+    <link href="Content/toaster.css" rel="stylesheet" />
+    <link href="Content/toaster.min.css" rel="stylesheet" />
     <link href="MyStyles.css" rel="stylesheet" />
     <script src="Scripts/jquery-3.1.0.js"></script>
     <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-animate.min.js"></script>
+    <script src="Scripts/toastr.js"></script>
     <script src="MyScripts.js"></script>
 </head>
 <body>
@@ -76,7 +80,7 @@
                 </div>
                     <div class="row" ng-repeat="product in store.products">
                         <div class="col-xs-2">
-                            <img src="{{product.image}}" class="center-block" />
+                            <img ng-src="{{product.image}}" class="center-block" />
                         </div>
                         <div class="col-xs-10">
                             <h3>{{product.name}}</h3>
@@ -229,6 +233,7 @@
                     <div class="row">
                         <div class="col-xs-3"> <h1> </h1></div>
                         <div class="col-xs-6" style="line-height: 90px;">
+                            <toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
                             <button type="submit" class="btn" ng-class="{validbuttonStyle: SingUpForm.$valid, invalidbuttonStyle: SingUpForm.$invalid}" style="text-align: center">Sing Up</button>
                         </div>
                         <div class="col-xs-3"> <h1> </h1></div>
@@ -275,5 +280,6 @@
     <script src="Scripts/jquery-3.1.0.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/toaster.min.js"></script>
 </body>
 </html>
